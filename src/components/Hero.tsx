@@ -26,7 +26,7 @@ const Hero = () => {
         <div className="w-10 h-px bg-purple/20" />
         <span className="text-xs tracking-[1px] text-muted">Systems & AI</span>
         <div className="w-10 h-px bg-purple/20" />
-        <span className="text-xs tracking-[1px] text-muted">Quant Finance</span>
+        <span className="text-xs tracking-[1px] text-muted">AI Agents</span>
       </div>
 
       <div className="flex gap-5 mt-[52px] opacity-0 animate-fadeUp" style={{ animationDelay: '1.1s' }}>
