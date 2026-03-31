@@ -7,15 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# dependency directories
+node_modules/
+jspm_packages/
+
+# build artifacts
+dist/
+dist-ssr/
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -23,6 +27,19 @@ dist-ssr
 *.sln
 *.sw?
 
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment and personal config
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 agent-orchestrator.yaml
-CNAME
-package-lock.json
+
+# AI / Assistant directories
+.claude/
+.gemini/
+.antigravity/

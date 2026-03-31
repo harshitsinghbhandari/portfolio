@@ -5,7 +5,7 @@ const Hero = () => {
       className="relative z-[1] min-h-screen flex flex-col justify-center px-[60px] overflow-hidden"
     >
       <p className="text-[11px] tracking-[4px] uppercase text-purple-light mb-6 opacity-0 animate-fadeUp" style={{ animationDelay: '0.3s' }}>
-        IIT Bombay · 2nd Year · Est. 2006
+        IIT Bombay · 2nd Year 
       </p>
 
       <h1 className="font-syne text-[clamp(64px,10vw,140px)] font-extrabold leading-[0.92] tracking-[-3px] mb-2">
@@ -22,11 +22,11 @@ const Hero = () => {
       </p>
 
       <div className="flex items-center gap-8 mt-5 opacity-0 animate-fadeUp" style={{ animationDelay: '0.9s' }}>
+        <span className="text-xs tracking-[1px] text-muted">AI Agents</span>
+        <div className="w-10 h-px bg-purple/20" />
         <span className="text-xs tracking-[1px] text-muted">Full-Stack Development</span>
         <div className="w-10 h-px bg-purple/20" />
         <span className="text-xs tracking-[1px] text-muted">Systems & AI</span>
-        <div className="w-10 h-px bg-purple/20" />
-        <span className="text-xs tracking-[1px] text-muted">AI Agents</span>
       </div>
 
       <div className="flex gap-5 mt-[52px] opacity-0 animate-fadeUp" style={{ animationDelay: '1.1s' }}>
