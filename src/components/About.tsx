@@ -11,7 +11,7 @@ const About = () => {
           possible.
         </h2>
         <p className="font-serif text-xl leading-[1.7] text-white/70 mb-8">
-          A curious mind at IIT Bombay, building at the intersection of systems, intelligence, and ideas. I move fast from concept to deployment — whether it's a governed AI agent, a quant finance framework, or a tool that thousands of students actually use.
+          A curious mind at IIT Bombay, building at the intersection of systems, intelligence, and ideas. I move fast from concept to deployment — whether it's a governed AI agent, a quant finance framework, or a tool that thousands of students actually use. Currently contributing to Composio's Agent Orchestrator — an open source agentic coding platform with 5,300+ GitHub stars.
         </p>
         <p className="text-[13px] text-muted leading-[1.8]">
           Currently in my 2nd year, graduating 2028 · Open to internships in software engineering, ML, and fintech.
@@ -19,7 +19,7 @@ const About = () => {
 
         <div className="grid grid-cols-3 gap-6 mt-12 max-[900px]:grid-cols-2">
           {[
-            { value: '7', label: 'Projects Built' },
+            { value: '9', label: 'Projects Built' },
             { value: '2028', label: 'Class of' },
             { value: '∞', label: 'Ideas Brewing' },
           ].map((stat, idx) => (

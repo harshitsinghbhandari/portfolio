@@ -2,6 +2,8 @@ const skills = [
   'React', 'TypeScript', 'Node.js', 'Express', 'Python', 'PostgreSQL',
   'NumPy', 'Pandas', 'JavaScript', 'Auth Systems', 'Keycloak', 'C++',
   'C', 'FastAPI', 'Flask', 'JWT / HMAC', 'SciPy', 'Vite',
+  'LLMs', 'Agent Systems', 'Google ADK', 'Gemini API', 'Claude API',
+  'Docker', 'Cloud Run', 'GitHub Actions',
 ]
 
 const Skills = () => {
