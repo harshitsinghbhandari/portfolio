@@ -62,6 +62,9 @@ const ParticleBackground = () => {
   const mouseRef = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
+    // Skip entirely if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -73,9 +76,13 @@ const ParticleBackground = () => {
     canvas.width = w
     canvas.height = h
 
-    // Initialize particles
-    particlesRef.current = Array.from({ length: 120 }, () => createParticle(w, h))
+    // Fewer particles on mobile for performance
+    const particleCount = w < 768 ? 40 : 120
+    particlesRef.current = Array.from({ length: particleCount }, () => createParticle(w, h))
     mouseRef.current = { x: w / 2, y: h / 2 }
+
+    let rafId: number
+    let paused = false
 
     const handleResize = () => {
       w = window.innerWidth
@@ -87,6 +94,16 @@ const ParticleBackground = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current.x = e.clientX
       mouseRef.current.y = e.clientY
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        paused = true
+        cancelAnimationFrame(rafId)
+      } else {
+        paused = false
+        rafId = requestAnimationFrame(animate)
+      }
     }
 
     const drawConnections = () => {
@@ -112,6 +129,8 @@ const ParticleBackground = () => {
     }
 
     const animate = () => {
+      if (paused) return
+
       ctx.clearRect(0, 0, w, h)
 
       // Nebula gradient following mouse
@@ -141,16 +160,18 @@ const ParticleBackground = () => {
         p.draw(ctx)
       })
 
-      requestAnimationFrame(animate)
+      rafId = requestAnimationFrame(animate)
     }
 
     window.addEventListener('resize', handleResize)
     document.addEventListener('mousemove', handleMouseMove)
-    const rafId = requestAnimationFrame(animate)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    rafId = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('resize', handleResize)
       document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
       cancelAnimationFrame(rafId)
     }
   }, [])
@@ -160,6 +181,7 @@ const ParticleBackground = () => {
       ref={canvasRef}
       id="bg-canvas"
       className="fixed top-0 left-0 w-full h-full z-0 opacity-70"
+      aria-hidden="true"
     />
   )
 }

@@ -8,9 +8,14 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 
+const SectionDivider = () => (
+  <div className="w-full px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
+    <div className="h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent" />
+  </div>
+)
+
 function App() {
   useEffect(() => {
-    // Initialize scroll reveal
     const reveals = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,18 +34,23 @@ function App() {
 
   return (
     <div className="relative">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <CustomCursor />
       <ParticleBackground />
       <Navbar />
-      <Hero />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent mx-auto" style={{ width: 'calc(100% - 120px)', marginLeft: '60px' }} />
-      <About />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent mx-auto" style={{ width: 'calc(100% - 120px)', marginLeft: '60px' }} />
-      <Skills />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent mx-auto" style={{ width: 'calc(100% - 120px)', marginLeft: '60px' }} />
-      <Projects />
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent mx-auto" style={{ width: 'calc(100% - 120px)', marginLeft: '60px' }} />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <SectionDivider />
+        <About />
+        <SectionDivider />
+        <Skills />
+        <SectionDivider />
+        <Projects />
+        <SectionDivider />
+        <Contact />
+      </main>
     </div>
   )
 }
