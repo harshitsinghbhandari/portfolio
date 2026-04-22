@@ -1,11 +1,23 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const isTouchDevice = () =>
+  'ontouchstart' in window || window.matchMedia('(pointer: coarse)').matches
 
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null)
   const trailRef = useRef<HTMLDivElement>(null)
   const posRef = useRef({ mx: 0, my: 0, tx: 0, ty: 0 })
+  const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
+    if (isTouchDevice()) return
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) return
+
+    setEnabled(true)
+    document.body.classList.add('custom-cursor-active')
+
     const cursor = cursorRef.current
     const trail = trailRef.current
     if (!cursor || !trail) return
@@ -29,8 +41,7 @@ const CustomCursor = () => {
     document.addEventListener('mousemove', handleMouseMove)
     const rafId = requestAnimationFrame(animateTrail)
 
-    // Interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, .stat')
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], .project-card, .skill-tag, .stat')
 
     const handleMouseEnter = () => {
       cursor.style.width = '20px'
@@ -54,6 +65,7 @@ const CustomCursor = () => {
     })
 
     return () => {
+      document.body.classList.remove('custom-cursor-active')
       document.removeEventListener('mousemove', handleMouseMove)
       cancelAnimationFrame(rafId)
       interactiveElements.forEach((el) => {
@@ -63,6 +75,8 @@ const CustomCursor = () => {
     }
   }, [])
 
+  if (!enabled) return null
+
   return (
     <>
       <div
@@ -70,11 +84,13 @@ const CustomCursor = () => {
         id="cursor"
         className="fixed w-3 h-3 bg-accent rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-out mix-blend-screen"
         style={{ transitionProperty: 'transform, width, height, opacity' }}
+        aria-hidden="true"
       />
       <div
         ref={trailRef}
         id="cursor-trail"
         className="fixed w-9 h-9 border border-purple-light/50 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-all duration-150 ease-out mix-blend-screen"
+        aria-hidden="true"
       />
     </>
   )

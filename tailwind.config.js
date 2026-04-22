@@ -15,13 +15,28 @@ export default {
         'purple-light': '#a855f7',
         'purple-glow': '#c084fc',
         accent: '#e879f9',
-        white: '#f0eaf8',
-        muted: '#7a6a8a',
+        cream: '#f0eaf8',
+        muted: '#9a8aaa',
       },
       fontFamily: {
         syne: ['Syne', 'sans-serif'],
         mono: ['DM Mono', 'monospace'],
         serif: ['Instrument Serif', 'serif'],
+      },
+      fontSize: {
+        '2xs': ['9px', { lineHeight: '1.4' }],
+        'xs2': ['10px', { lineHeight: '1.4' }],
+        'xs': ['11px', { lineHeight: '1.4' }],
+        'sm': ['13px', { lineHeight: '1.6' }],
+        'base': ['15px', { lineHeight: '1.8' }],
+      },
+      letterSpacing: {
+        label: '4px',
+        tag: '2px',
+        tight: '-0.5px',
+      },
+      maxWidth: {
+        content: '1400px',
       },
       animation: {
         'fadeUp': 'fadeUp 0.8s ease forwards',
