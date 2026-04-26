@@ -1,22 +1,25 @@
 import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
+import Home from './pages/Home'
+import BlogList from './pages/BlogList'
+import BlogPost from './pages/BlogPost'
 
-const SectionDivider = () => (
-  <div className="w-full px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
-    <div className="h-px bg-gradient-to-r from-transparent via-purple/20 to-transparent" />
-  </div>
-)
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
 
 function App() {
+  const { pathname } = useLocation()
+
   useEffect(() => {
-    const reveals = document.querySelectorAll('.reveal')
+    const reveals = document.querySelectorAll('.reveal:not(.visible)')
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -30,26 +33,23 @@ function App() {
     reveals.forEach((r) => observer.observe(r))
 
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
 
   return (
     <div className="relative">
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
+      <ScrollToTop />
       <CustomCursor />
       <ParticleBackground />
       <Navbar />
       <main id="main-content">
-        <Hero />
-        <SectionDivider />
-        <About />
-        <SectionDivider />
-        <Skills />
-        <SectionDivider />
-        <Projects />
-        <SectionDivider />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blogs" element={<BlogList />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
+        </Routes>
       </main>
     </div>
   )
