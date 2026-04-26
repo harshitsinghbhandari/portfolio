@@ -22,7 +22,7 @@ const BlogList = () => {
             <Link
               key={post.slug}
               to={`/blogs/${post.slug}`}
-              className="reveal block p-8 lg:p-12 border border-purple/20 bg-cream/[0.01] no-underline transition-all duration-300 hover:border-purple/50 hover:bg-purple/[0.03]"
+              className="group reveal block p-8 lg:p-12 border border-purple/20 bg-cream/[0.01] no-underline transition-all duration-300 hover:border-purple/50 hover:bg-purple/[0.03]"
             >
               <p className="text-2xs tracking-[3px] text-purple-light opacity-70 mb-4">
                 {new Date(post.date).toLocaleDateString('en-US', {
