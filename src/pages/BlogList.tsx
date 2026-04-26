@@ -5,7 +5,7 @@ const BlogList = () => {
   const posts = getAllPosts()
 
   return (
-    <section className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-[900px] mx-auto">
+    <section className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
       <div className="flex items-baseline gap-6 mb-12 lg:mb-16 reveal">
         <span className="text-xs tracking-[3px] text-purple-light">05</span>
         <h2 className="font-syne text-[clamp(40px,5vw,72px)] font-extrabold tracking-[-2px] leading-[1]">

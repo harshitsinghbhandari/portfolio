@@ -9,7 +9,7 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <section className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-[720px] mx-auto text-center">
+      <section className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto text-center">
         <h1 className="font-syne text-[clamp(32px,5vw,56px)] font-extrabold tracking-[-2px] text-cream mb-6">
           Post not found
         </h1>
@@ -34,7 +34,7 @@ const BlogPost = () => {
   }
 
   return (
-    <article className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-[720px] mx-auto">
+    <article className="relative z-[1] min-h-screen py-32 lg:py-40 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
       <Link
         to="/blogs"
         className="inline-flex items-center gap-2 text-xs tracking-tag uppercase text-purple-light no-underline transition-colors duration-300 hover:text-accent mb-12"
@@ -70,7 +70,7 @@ const BlogPost = () => {
             </span>
           ))}
         </div>
-        <h1 className="font-syne text-[clamp(32px,5vw,56px)] font-extrabold tracking-[-2px] leading-[1.05] text-cream mb-4">
+        <h1 className="font-syne text-[clamp(24px,3.5vw,40px)] font-extrabold tracking-[-1.5px] leading-[1.1] text-cream mb-4">
           {post.title}
         </h1>
         <p className="font-serif italic text-xl text-muted">

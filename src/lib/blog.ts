@@ -21,7 +21,13 @@ interface RawFrontmatter {
 function parseFrontmatter(raw: string): { data: RawFrontmatter; content: string } {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
   if (!match) return { data: {}, content: raw }
-  return { data: parseYaml(match[1]) as RawFrontmatter, content: match[2].trim() }
+  // Strip leading h1 if it duplicates the frontmatter title
+  let content = match[2].trim()
+  const data = parseYaml(match[1]) as RawFrontmatter
+  if (data.title) {
+    content = content.replace(/^# .+\n*/, '')
+  }
+  return { data, content }
 }
 
 const modules = import.meta.glob('/content/blogs/*.md', {
