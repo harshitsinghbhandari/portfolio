@@ -1,0 +1,145 @@
+---
+title: "I Automated My College's Moodle So I Never Have to Open It Again"
+description: "How I built a Python tool that scrapes grades, announcements, and submissions from IITB Moodle using Chrome DevTools Protocol — and posts everything to Discord."
+date: "2026-04-26"
+author: Harshit Singh
+tags: ["automation", "python", "moodle", "cdp", "iitb"]
+readingTime: 5 min
+draft: false
+---
+
+# I Automated My College's Moodle So I Never Have to Open It Again
+
+If you've ever used Moodle, you know the pain. Slow page loads. Clicking through five tabs to find one grade. Checking announcements across ten courses. Downloading submissions you submitted three months ago.
+
+I'm a second year student at IIT Bombay, and I got tired of it. So I automated the whole thing.
+
+## The idea
+
+What if I could just write this:
+
+```python
+from moodle.moodle import *
+
+connect()
+g = grades("data analytics")
+post_discord(fmt_grades(g, "Data Analytics"))
+```
+
+And have my grades show up in Discord? No browser tabs, no clicking, no waiting 15 seconds for Moodle's JavaScript to render course cards.
+
+That's exactly what I built.
+
+## How it works
+
+The tool connects to a real Chrome session using the Chrome DevTools Protocol (CDP). No headless browser, no Selenium, no Playwright. It talks to your actual logged-in Chrome — the one where you're already authenticated into Moodle.
+
+The stack is dead simple:
+
+- **browser-harness** — an open source CDP wrapper (~600 lines of Python)
+- **A thin Moodle layer** — ~300 lines that know Moodle's selectors, URL patterns, and quirks
+- **Discord webhook** — because why check grades anywhere else
+
+The architecture looks like this:
+
+```
+Chrome (port 9222) → CDP WebSocket → daemon.py → Unix socket → moodle.py
+```
+
+The daemon holds the WebSocket connection open. My code talks to the daemon through a Unix socket. The daemon forwards CDP commands to Chrome. It's fast and it doesn't break your browser.
+
+## What it can do
+
+**Check grades for any course:**
+
+```python
+g = grades("data analytics")
+print(fmt_grades(g, "Data Analytics, AI/ML Lab"))
+```
+
+```
+Submission: Lab 01                    100.00  100.00 %
+Lab 02 Submission                     100.00  100.00 %
+Lab 03 submission                      98.61  98.61 %  ⚠ Sklearn train test split not used
+Lab 05 submission                      65.00  65.00 %
+...
+──────────────────────────────────────────────────
+TOTAL                                 957.11  95.71 %
+```
+
+**Get announcements:**
+
+```python
+anns = announcements("data analytics", n=5)
+print(fmt_announcements(anns))
+```
+
+This navigates to the course, finds the Announcements forum, scrapes the listing, visits each post for the full body, and returns clean structured data.
+
+**Download your submissions:**
+
+```python
+files = download_submission("IE 201", "lab 02")
+# -> downloads/24b4506_LabL2.zip (311KB)
+```
+
+The trick here was using `fetch()` inside the browser context — Moodle requires authentication, so a raw HTTP request from Python would just get a login page. By running fetch through CDP, the browser's session cookies ride along automatically.
+
+**Post to Discord:**
+
+```python
+post_discord(fmt_grades(g, "Data Analytics"))
+```
+
+Reads the webhook URL from `.env` and posts via httpx. (Fun fact: Discord's Cloudflare blocks Python's urllib — learned that the hard way.)
+
+## The hard parts
+
+A few things I discovered while building this:
+
+**Moodle renders course cards lazily.** The page reports `document.readyState === 'complete'` almost immediately, but the actual course cards take ~15 seconds to appear in the DOM. You can't just `wait_for_load()` — you have to poll for the selector.
+
+**Grade table cells are messy.** Each grade item is prefixed with its type ("AssignmentLab 03 submission") and the grade cell has "Actions Grade analysis" appended to the number. Parsing requires stripping both.
+
+**Everything is duplicated in the DOM.** Course sections appear twice — once in the main content and once in the sidebar course index. Activities are doubled too. If you `querySelectorAll` without scoping, you get 2x results.
+
+**Course IDs and activity IDs are different things.** Courses use `?id=8627` on `/course/view.php`, activities use `?id=83144` on `/mod/assign/view.php`. Same parameter name, completely different ID spaces.
+
+I documented all of these in a `navigation.md` file so I don't rediscover them every time.
+
+## Course lookup
+
+Instead of remembering course IDs, every function accepts a name substring:
+
+```python
+grades("feedback")           # -> Feedback and Dynamics
+grades("IE 206")             # -> Intro to AI and ML
+grades(8627)                 # -> Data Analytics (by ID)
+open_course("optimization")  # -> Nonlinear and Discrete Optimization
+```
+
+There's a hardcoded course table for instant lookup, plus a `courses()` function that scrapes the live listing.
+
+## Setup
+
+It's three steps:
+
+1. Launch Chrome with remote debugging on a separate profile
+2. Log into Moodle in that browser
+3. `from moodle.moodle import *; connect()`
+
+The debug profile persists your session, so you only log in once. The `connect()` function auto-discovers the WebSocket URL from Chrome's debug endpoint — no hardcoded UUIDs.
+
+## What's next
+
+A few things I want to add:
+
+- **Deadline tracker** — scrape assignment due dates across all courses, post daily reminders to Discord
+- **Grade diff notifications** — run on a cron, compare with last known grades, alert on changes
+- **Bulk download** — grab all lecture PDFs and resources from a course in one go
+
+The whole thing is [on GitHub](https://github.com/harshitsinghbhandari/moodle-automated) if you want to fork it for your own university's Moodle. The Moodle-specific selectors will vary, but the architecture and the CDP approach work anywhere.
+
+---
+
+*Built with [browser-harness](https://github.com/browser-use/browser-harness) and a healthy disrespect for slow web UIs.*
