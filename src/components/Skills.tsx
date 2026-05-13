@@ -8,22 +8,22 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="relative z-[1] py-16 lg:py-[120px] px-6 md:px-10 lg:px-[60px] max-w-content mx-auto overflow-hidden">
+    <section id="skills" className="relative z-[1] py-20 lg:py-32 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto overflow-hidden">
       <div className="flex items-baseline gap-6 mb-12 lg:mb-16 reveal">
-        <span className="text-xs tracking-[3px] text-purple-light">02</span>
-        <h2 className="font-syne text-[clamp(40px,5vw,72px)] font-extrabold tracking-[-2px] leading-[1]">
+        <span className="font-mono text-2xs tracking-tag text-muted">02</span>
+        <h2 className="font-display text-h2 font-medium text-text">
           Stack
         </h2>
-        <div className="flex-1 h-px bg-purple/20" />
+        <div className="flex-1 h-px bg-white/10" />
       </div>
 
-      <div className="flex flex-wrap gap-3 reveal">
+      <div className="flex flex-wrap gap-2 reveal">
         {skills.map((skill) => (
           <div
             key={skill}
-            className="skill-tag px-4 md:px-5 py-2 md:py-2.5 border border-purple/20 rounded-[2px] text-xs tracking-[1px] text-muted bg-purple/[0.04] transition-all duration-300 cursor-default relative overflow-hidden hover:border-purple-light hover:text-cream hover:-translate-y-0.5 before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-purple-deep before:to-purple/20 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
+            className="px-3 py-1.5 border border-white/10 rounded-sm font-mono text-xs text-muted transition-colors duration-200 cursor-default hover:border-white/25 hover:text-text"
           >
-            <span className="relative z-[1]">{skill}</span>
+            {skill}
           </div>
         ))}
       </div>

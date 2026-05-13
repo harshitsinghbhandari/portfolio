@@ -7,7 +7,6 @@ interface Particle {
   speedX: number
   speedY: number
   alpha: number
-  color: string
   reset: (w: number, h: number) => void
   update: (w: number, h: number) => void
   draw: (ctx: CanvasRenderingContext2D) => void
@@ -17,12 +16,10 @@ const createParticle = (w: number, h: number): Particle => {
   const reset = (width: number, height: number) => {
     particle.x = Math.random() * width
     particle.y = Math.random() * height
-    particle.size = Math.random() * 1.5 + 0.3
-    particle.speedX = (Math.random() - 0.5) * 0.4
-    particle.speedY = (Math.random() - 0.5) * 0.4
-    particle.alpha = Math.random() * 0.5 + 0.1
-    const rand = Math.random()
-    particle.color = rand > 0.6 ? '#a855f7' : rand > 0.5 ? '#e879f9' : '#7c3aed'
+    particle.size = Math.random() * 1.1 + 0.2
+    particle.speedX = (Math.random() - 0.5) * 0.25
+    particle.speedY = (Math.random() - 0.5) * 0.25
+    particle.alpha = Math.random() * 0.35 + 0.08
   }
 
   const particle: Particle = {
@@ -32,7 +29,6 @@ const createParticle = (w: number, h: number): Particle => {
     speedX: 0,
     speedY: 0,
     alpha: 0,
-    color: '',
     reset,
     update(width: number, height: number) {
       this.x += this.speedX
@@ -44,7 +40,7 @@ const createParticle = (w: number, h: number): Particle => {
     draw(ctx: CanvasRenderingContext2D) {
       ctx.save()
       ctx.globalAlpha = this.alpha
-      ctx.fillStyle = this.color
+      ctx.fillStyle = '#e8e6e3'
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
@@ -59,10 +55,8 @@ const createParticle = (w: number, h: number): Particle => {
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
-  const mouseRef = useRef({ x: 0, y: 0 })
 
   useEffect(() => {
-    // Skip entirely if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const canvas = canvasRef.current
@@ -76,10 +70,8 @@ const ParticleBackground = () => {
     canvas.width = w
     canvas.height = h
 
-    // Fewer particles on mobile for performance
-    const particleCount = w < 768 ? 40 : 120
+    const particleCount = w < 768 ? 20 : 60
     particlesRef.current = Array.from({ length: particleCount }, () => createParticle(w, h))
-    mouseRef.current = { x: w / 2, y: h / 2 }
 
     let rafId: number
     let paused = false
@@ -89,11 +81,6 @@ const ParticleBackground = () => {
       h = window.innerHeight
       canvas.width = w
       canvas.height = h
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX
-      mouseRef.current.y = e.clientY
     }
 
     const handleVisibilityChange = () => {
@@ -106,55 +93,10 @@ const ParticleBackground = () => {
       }
     }
 
-    const drawConnections = () => {
-      const particles = particlesRef.current
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 120) {
-            ctx.save()
-            ctx.globalAlpha = ((1 - dist / 120) * 0.08)
-            ctx.strokeStyle = '#7c3aed'
-            ctx.lineWidth = 0.5
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.stroke()
-            ctx.restore()
-          }
-        }
-      }
-    }
-
     const animate = () => {
       if (paused) return
 
       ctx.clearRect(0, 0, w, h)
-
-      // Nebula gradient following mouse
-      const grad = ctx.createRadialGradient(
-        mouseRef.current.x,
-        mouseRef.current.y,
-        0,
-        mouseRef.current.x,
-        mouseRef.current.y,
-        400
-      )
-      grad.addColorStop(0, 'rgba(61,26,110,0.08)')
-      grad.addColorStop(1, 'transparent')
-      ctx.fillStyle = grad
-      ctx.fillRect(0, 0, w, h)
-
-      // Secondary nebula
-      const grad2 = ctx.createRadialGradient(w * 0.8, h * 0.2, 0, w * 0.8, h * 0.2, 500)
-      grad2.addColorStop(0, 'rgba(124,58,237,0.05)')
-      grad2.addColorStop(1, 'transparent')
-      ctx.fillStyle = grad2
-      ctx.fillRect(0, 0, w, h)
-
-      drawConnections()
       particlesRef.current.forEach((p) => {
         p.update(w, h)
         p.draw(ctx)
@@ -164,13 +106,11 @@ const ParticleBackground = () => {
     }
 
     window.addEventListener('resize', handleResize)
-    document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('visibilitychange', handleVisibilityChange)
     rafId = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       cancelAnimationFrame(rafId)
     }
@@ -180,7 +120,7 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       id="bg-canvas"
-      className="fixed top-0 left-0 w-full h-full z-0 opacity-70"
+      className="fixed top-0 left-0 w-full h-full z-0 opacity-50 pointer-events-none"
       aria-hidden="true"
     />
   )
