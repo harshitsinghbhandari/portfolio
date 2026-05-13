@@ -1,13 +1,10 @@
+import Section from './ui/Section'
+import SectionHeader from './ui/SectionHeader'
+
 const About = () => {
   return (
-    <section id="about" className="relative z-[1] py-20 lg:py-32 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
-      <div className="flex items-baseline gap-6 mb-12 lg:mb-16 reveal">
-        <span className="font-mono text-2xs tracking-tag text-muted">01</span>
-        <h2 className="font-display text-h2 font-medium text-text">
-          About
-        </h2>
-        <div className="flex-1 h-px bg-white/10" />
-      </div>
+    <Section id="about">
+      <SectionHeader number="01" title="About" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Photo */}
@@ -53,7 +50,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
 

@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom'
 import { getAllPosts } from '../lib/blog'
+import Section from '../components/ui/Section'
+import SectionHeader from '../components/ui/SectionHeader'
+import Tag from '../components/ui/Tag'
 
 const BlogList = () => {
   const posts = getAllPosts()
 
   return (
-    <section className="relative z-[1] min-h-screen pt-32 lg:pt-40 pb-20 lg:pb-32 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto">
-      <div className="flex items-baseline gap-6 mb-12 lg:mb-16 reveal">
-        <span className="font-mono text-2xs tracking-tag text-muted">Writing</span>
-        <h1 className="font-display text-h1 font-medium text-text">
-          Blog
-        </h1>
-        <div className="flex-1 h-px bg-white/10" />
-      </div>
+    <Section variant="pageTop" className="min-h-screen">
+      <SectionHeader title="Blog" as="h1" />
 
       {posts.length === 0 ? (
         <p className="font-display italic text-muted text-center py-20">No posts yet.</p>
@@ -39,19 +36,14 @@ const BlogList = () => {
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-mono text-2xs tracking-tag uppercase px-2.5 py-1 border border-white/10 rounded-sm text-muted"
-                  >
-                    {tag}
-                  </span>
+                  <Tag key={tag}>{tag}</Tag>
                 ))}
               </div>
             </Link>
           ))}
         </div>
       )}
-    </section>
+    </Section>
   )
 }
 
