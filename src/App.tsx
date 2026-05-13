@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -41,7 +40,6 @@ function App() {
         Skip to main content
       </a>
       <ScrollToTop />
-      <CustomCursor />
       <ParticleBackground />
       <Navbar />
       <main id="main-content">
