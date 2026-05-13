@@ -1,3 +1,6 @@
+import Section from './ui/Section'
+import SectionHeader from './ui/SectionHeader'
+
 const skills = [
   'React', 'TypeScript', 'Node.js', 'Express', 'Python', 'PostgreSQL',
   'NumPy', 'Pandas', 'JavaScript', 'Auth Systems', 'Keycloak', 'C++',
@@ -8,14 +11,8 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="relative z-[1] py-20 lg:py-32 px-6 md:px-10 lg:px-[60px] max-w-content mx-auto overflow-hidden">
-      <div className="flex items-baseline gap-6 mb-12 lg:mb-16 reveal">
-        <span className="font-mono text-2xs tracking-tag text-muted">02</span>
-        <h2 className="font-display text-h2 font-medium text-text">
-          Stack
-        </h2>
-        <div className="flex-1 h-px bg-white/10" />
-      </div>
+    <Section id="skills">
+      <SectionHeader number="02" title="Stack" />
 
       <div className="flex flex-wrap gap-2 reveal">
         {skills.map((skill) => (
@@ -27,7 +24,7 @@ const Skills = () => {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 
