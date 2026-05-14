@@ -4,7 +4,7 @@ export default function ContactCTA() {
   return (
     <section className="border-t border-border/60 py-20 md:py-28">
       <div className="container-page">
-        <p className="label mb-4">04 · contact</p>
+        <p className="label mb-4">05 · contact</p>
         <h2 className="font-sans text-3xl font-semibold tracking-tight md:text-5xl">
           Working on something interesting?
           <span className="block text-muted">Tell me about it.</span>
