@@ -16,15 +16,16 @@ export default function AboutStrip() {
             </h2>
             <div className="mt-6 space-y-5 text-[15.5px] leading-[1.75] text-text/80">
               <p>
-                Second-year CS student. I build small, local-first systems —
-                voice assistants, screen-watchers, briefing pipelines — that
-                compose into something larger than any single tool.
+                Second-year IEOR student at IIT Bombay. I build small,
+                local-first systems — voice assistants, screen-watchers,
+                briefing pipelines — that compose into something larger than
+                any single tool.
               </p>
               <p>
                 I keep coming back to the same shape: capture → durable log →
-                compile → consume. Donna, Study Buddy, Moodle, discord-archive,
-                Hermes — each is a layer in the same pipeline. Boring,
-                composable, mine.
+                compile → consume. Donna, Study Buddy, Moodle, discord-archive
+                — each is a layer in the same pipeline. Boring, composable,
+                mine.
               </p>
               <p className="text-muted">
                 Open to internships in software engineering, ML, and infra.
