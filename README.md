@@ -1,78 +1,73 @@
-# Harshit Singh - Portfolio
+# theharshitsingh.com — v2
 
-A modern, performant portfolio website built with React, Vite, TypeScript, and Tailwind CSS.
+Hybrid portfolio for Harshit Singh. Next.js 14 App Router, Tailwind, Framer
+Motion, MDX. Bespoke React pages for flagship projects; a markdown pipeline
+for writing.
 
-## Features
+## Architecture
 
-- ✨ Custom cursor with trailing effect
-- 🌌 Animated particle background with mouse-following nebula
-- 🎴 3D tilt effects on project cards
-- 📜 Smooth scroll reveal animations
-- 🎨 Purple gradient theme with custom design system
-- 📱 Fully responsive design
-- ⚡ Built with Vite for optimal performance
-- 🔤 Custom font stack (Syne, DM Mono, Instrument Serif)
+```
+app/
+├── layout.tsx                  # Geist font, Navbar, Footer
+├── page.tsx                    # Home — Hero, Flagship, Writing, About, Contact
+├── projects/
+│   └── donna/page.tsx          # Bespoke page (no markdown)
+└── writing/
+    ├── page.tsx                # Index of MDX posts
+    └── [slug]/page.tsx         # MDX-rendered post
 
-## Tech Stack
+components/                     # Shared + bespoke /projects/donna pieces
+content/writing/*.mdx           # All long-form writing lives here
+lib/writing.ts                  # fs glob + gray-matter parsing
+lib/projects.ts                 # Flagship project data
+```
 
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion + Custom CSS animations
-- **Deployment**: GitHub Pages
+Two content modes:
 
-## Development
+- **Flagship projects** → bespoke React (`app/projects/<slug>/page.tsx`). Each
+  flagship gets its own layout, animations, copy. No templates.
+- **Writing** → drop an `.mdx` file in `content/writing/` and it appears at
+  `/writing/<slug>` with full prose styling.
+
+## Develop
 
 ```bash
-# Install dependencies
 npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev          # http://localhost:3000
+npm run build        # production build
+npm run lint
 ```
 
-## Project Structure
+## Authoring a post
 
-```
-src/
-├── components/
-│   ├── CustomCursor.tsx        # Custom cursor with trail
-│   ├── ParticleBackground.tsx  # Canvas particle animation
-│   ├── Navbar.tsx              # Navigation bar
-│   ├── Hero.tsx                # Hero section
-│   ├── About.tsx               # About section
-│   ├── Skills.tsx              # Skills section
-│   ├── Projects.tsx            # Projects grid
-│   ├── ProjectCard.tsx         # Individual project card with 3D tilt
-│   └── Contact.tsx             # Contact section
-├── data/
-│   └── projects.ts             # Project data
-├── App.tsx                     # Main app component
-├── main.tsx                    # Entry point
-└── index.css                   # Global styles
-```
+1. Create `content/writing/<slug>.mdx`.
+2. Add frontmatter:
+   ```yaml
+   ---
+   title: "Post title"
+   description: "One-line summary."
+   date: 2026-05-14
+   tags: ["agents", "local-ai"]
+   readingTime: "6 min"
+   draft: false
+   ---
+   ```
+3. Write MDX. Standard markdown works; raw JSX components can be imported and
+   used inline if needed.
+4. `draft: true` posts only render in development.
 
-## Animations Preserved
+## Adding a flagship project page
 
-All animations from the original design have been preserved:
-- Hero section staggered fade-up animations
-- Rotating JEE rank badge
-- Scroll indicator with animated line
-- Navigation scroll effect
-- Project card hover effects with 3D tilt
-- Skill tag interactions
-- Scroll reveal animations using Intersection Observer
+1. Add an entry to `lib/projects.ts` (set `bespoke: true`, point `href` at
+   `/projects/<slug>`).
+2. Create `app/projects/<slug>/page.tsx` and compose section components like
+   `components/donna/*` does for Donna.
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch via GitHub Actions.
+Targets **Vercel**. Push to `main` → Vercel auto-deploys. Custom domain
+(`theharshitsingh.com`) needs to be re-pointed away from GitHub Pages — set
+the apex/`www` records to Vercel's DNS in the registrar dashboard.
 
-## License
-
-© 2024 Harshit Singh Bhandari. All rights reserved.
+The old `/blogs/...` paths permanently redirect to `/writing/...` via
+`next.config.mjs`.

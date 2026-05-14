@@ -14,7 +14,12 @@ jspm_packages/
 # build artifacts
 dist/
 dist-ssr/
+out/
+.next/
+next-env.d.ts
+.vercel
 *.local
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*

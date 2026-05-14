@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    background: theme('colors.bg');
+    color: theme('colors.text');
+  }
+
+  body {
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    background: theme('colors.accent / 30%');
+    color: theme('colors.text');
+  }
+
+  *:focus-visible {
+    outline: 2px solid theme('colors.accent');
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-6 md:px-10;
+  }
+
+  .label {
+    @apply font-mono text-2xs uppercase text-muted;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-border;
+  }
+
+  .surface {
+    @apply rounded-lg border border-border bg-surface;
+  }
+
+  .glow-ring {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 0 1px rgba(167, 139, 250, 0);
+    transition: box-shadow 250ms ease;
+  }
+
+  .glow-ring:hover {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 0 1px rgba(167, 139, 250, 0.18),
+      0 16px 60px -28px rgba(167, 139, 250, 0.45);
+  }
+}
+
+.prose-writing {
+  @apply prose prose-invert max-w-none
+    prose-headings:font-sans prose-headings:tracking-tight prose-headings:text-text
+    prose-h1:text-4xl prose-h1:font-semibold
+    prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-4 prose-h2:font-semibold
+    prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:font-semibold
+    prose-p:text-[15.5px] prose-p:leading-[1.75] prose-p:text-text/80
+    prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4
+    prose-strong:text-text prose-strong:font-semibold
+    prose-em:italic
+    prose-code:text-accent prose-code:font-mono prose-code:text-[13px] prose-code:bg-white/[0.04] prose-code:border prose-code:border-border prose-code:rounded prose-code:px-1.5 prose-code:py-0.5
+    prose-code:before:hidden prose-code:after:hidden
+    prose-pre:bg-surface prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:text-[13px] prose-pre:leading-[1.7]
+    prose-blockquote:border-l-2 prose-blockquote:border-accent/40 prose-blockquote:not-italic prose-blockquote:text-muted
+    prose-li:text-text/80 prose-li:marker:text-accent/60
+    prose-hr:border-border
+    prose-img:rounded-lg prose-img:border prose-img:border-border;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
