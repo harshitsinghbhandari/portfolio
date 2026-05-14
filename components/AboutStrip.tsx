@@ -1,7 +1,7 @@
 const stats = [
-  { value: '5,300+', label: 'Composio stars' },
-  { value: '#1', label: 'Human contributor' },
-  { value: '2028', label: 'IIT-B class of' },
+  { value: '6', label: 'Systems shipped' },
+  { value: '4', label: 'Long-form posts' },
+  { value: '2028', label: 'IIT-B · class of' },
 ]
 
 export default function AboutStrip() {
@@ -16,17 +16,9 @@ export default function AboutStrip() {
             </h2>
             <div className="mt-6 space-y-5 text-[15.5px] leading-[1.75] text-text/80">
               <p>
-                Second-year CS student. Currently the #1 human contributor to
-                Composio&apos;s{' '}
-                <a
-                  href="https://github.com/ComposioHQ/agent-orchestrator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent no-underline hover:underline underline-offset-4"
-                >
-                  agent-orchestrator
-                </a>
-                {' '}— a production agentic coding platform with 5,300+ stars.
+                Second-year CS student. I build small, local-first systems —
+                voice assistants, screen-watchers, briefing pipelines — that
+                compose into something larger than any single tool.
               </p>
               <p>
                 I keep coming back to the same shape: capture → durable log →
