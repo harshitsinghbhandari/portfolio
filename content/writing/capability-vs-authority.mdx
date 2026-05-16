@@ -1,0 +1,65 @@
+---
+title: "The Missing Boundary in Agentic Systems: Capability vs. Authority"
+description: "We have solved for AI that can click and type. We haven't solved for AI that knows when to stop. Building a three-tier trust gate and out-of-band biometric authorization for local desktop agents."
+date: "2026-05-14"
+author: Harshit Singh
+tags: ["architecture", "local-first", "agents", "security"]
+readingTime: 5 min
+draft: false
+---
+
+# The Missing Boundary in Agentic Systems: Capability vs. Authority
+
+The current obsession in the AI engineering space is autonomy. Everyone is racing to build agents that can navigate DOMs, parse screenshots, and operate native desktop environments.
+
+We have largely solved for capability. But we are ignoring the harder infrastructural problem: authorization.
+
+An agent that can reliably operate a desktop is inherently dangerous. If a model can open your browser and draft an email, it possesses the mechanical capability to wire money, delete a production database, or wipe a hard drive. The core design question for desktop agents is not "can the model click the button?" It is: **what sits between a real-time multimodal model and a user account before desktop automation becomes acceptable?**
+
+When building Aegis—a local macOS agent orchestrating Gemini Live—I realized that autonomy without governance is just a liability. The system needed a trust boundary.
+
+Here is how I built a graduated execution gate that separates an agent's capability to act from its authority to execute.
+
+### The Capability vs. Authority Problem
+
+In most agent architectures, the model that plans the action is the same model that executes it. If the agent decides a destructive action is necessary to fulfill a prompt, the system complies blindly.
+
+To fix this, we have to sever the link between intention and execution. In Aegis, **the agent can propose an action, but it cannot directly execute one.** Every tool call is intercepted by a central invariant called the Trust Gate.
+
+The gate evaluates the action's intent and consequence using a secondary, narrowly-prompted classifier. It then routes the execution through a three-tier model:
+
+| Tier | Action Class | Authorization Path |
+| :--- | :--- | :--- |
+| **Green** | Read-only, navigation, state inspection | Silent execution |
+| **Yellow** | Reversible mutation, drafting, UI interaction | Passive voice confirmation |
+| **Red** | Irreversible, financial, destructive, externally visible | Out-of-band Biometric Auth (WebAuthn/Face ID) |
+
+### Engineering the Trust Gate
+
+The hardest part of this architecture is keeping a real-time Live API session, native desktop automation, and an authorization protocol from stepping on each other.
+
+When the primary Gemini Live session emits a function call (e.g., `keyboard_type`), the agent's receive loop immediately shifts the session into an `EXECUTING` state. This purges stale media from the outbound queue to prevent API policy violations and hands the payload to the gate.
+
+The gate doesn't just look at the tool name. `keyboard_type` is Green if it’s typing into a local search bar, but Red if it’s entering an SSH key. The secondary classifier evaluates the visual context and the arguments, returning a tier assignment.
+
+If the action is Green, the native OS execution (`pyautogui`, macOS Accessibility) happens immediately. If it's Yellow, the agent pauses for verbal confirmation. But if it's Red, the system shifts into out-of-band authorization.
+
+### Out-of-Band Biometrics (The Red Path)
+
+You cannot authorize a destructive action in the same desktop context where the agent is operating. If the agent controls the mouse, it could theoreticaly click "Approve" on its own prompt.
+
+For Red actions, Aegis halts local execution entirely and shifts to a cloud broker:
+
+1. **The Request:** The local Python agent constructs an audit envelope and sends an auth request to a FastAPI backend backed by Firestore.
+2. **The Out-of-Band Prompt:** A mobile PWA, polling the backend, receives the pending request. It presents the exact visual context of the screen and the proposed action to the user on their phone.
+3. **The Biometric Challenge:** The user must approve the action using Face ID. This isn't a simple button click; the PWA uses WebAuthn to ask the iOS platform authenticator to sign a cryptographic challenge.
+4. **The Verification:** The backend verifies the signed assertion against the user's stored public key. Only if valid does the Firestore document update to `approved`.
+5. **The Resumption:** The local agent, which has been polling the document state, sees the approval, executes the native screen tool, and returns the post-action screenshot to the Gemini Live session.
+
+### Why This Matters
+
+Most desktop-agent demos are optimized for the happy path. But as we move toward "Local-First AI"—ambient intelligence that runs constantly in the background and reasons over our private context—we cannot rely on the happy path.
+
+Aegis assumes that an AI agent with a mouse is dangerous by default. It builds the minimum infrastructure needed to make that danger governable.
+
+The future of production agents isn't just better vision models or faster inference. It is building robust, cryptographically secure pipelines that let AI reason over our lives without accidentally destroying them.
