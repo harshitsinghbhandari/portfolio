@@ -70,7 +70,7 @@
     prose-h1:text-4xl prose-h1:font-semibold
     prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-4 prose-h2:font-semibold
     prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:font-semibold
-    prose-p:text-[15.5px] prose-p:leading-[1.75] prose-p:text-text/80
+    prose-p:text-base prose-p:leading-[1.75] prose-p:text-text/80
     prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4
     prose-strong:text-text prose-strong:font-semibold
     prose-em:italic
@@ -80,7 +80,27 @@
     prose-blockquote:border-l-2 prose-blockquote:border-accent/40 prose-blockquote:not-italic prose-blockquote:text-muted
     prose-li:text-text/80 prose-li:marker:text-accent/60
     prose-hr:border-border
-    prose-img:rounded-lg prose-img:border prose-img:border-border;
+    prose-img:rounded-lg prose-img:border prose-img:border-border
+    prose-table:text-[14px] prose-th:border-b prose-th:border-border prose-th:text-text
+    prose-td:border-b prose-td:border-border/70 prose-td:text-text/80;
+}
+
+.prose-writing :where(p, ul, ol, blockquote):not(:where(.not-prose *)) {
+  max-width: 760px;
+}
+
+.prose-writing :where(pre, table):not(:where(.not-prose *)) {
+  width: 100%;
+}
+
+.prose-writing :where(pre):not(:where(.not-prose *)) {
+  overflow-x: auto;
+}
+
+.prose-writing :where(table):not(:where(.not-prose *)) {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: reduce) {

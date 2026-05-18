@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
 import { formatPostDate, getAllSlugs, getPostBySlug } from '@/lib/writing'
 
 interface PostPageProps {
@@ -39,7 +40,7 @@ export default function PostPage({ params }: PostPageProps) {
 
   return (
     <article className="container-page pt-24 pb-24 md:pt-32">
-      <div className="mx-auto max-w-prose">
+      <div className="mx-auto w-full max-w-[920px] lg:max-w-[980px]">
         <Link
           href="/writing"
           className="label inline-flex items-center gap-2 no-underline transition-colors hover:text-text"
@@ -60,7 +61,7 @@ export default function PostPage({ params }: PostPageProps) {
           <h1 className="mt-5 font-sans text-3xl font-semibold tracking-tight text-text md:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted">
+          <p className="mt-4 max-w-[760px] text-lg leading-relaxed text-muted">
             {post.description}
           </p>
           <div className="mt-6 flex flex-wrap gap-1.5">
@@ -77,7 +78,10 @@ export default function PostPage({ params }: PostPageProps) {
         </header>
 
         <div className="prose-writing">
-          <MDXRemote source={post.content} />
+          <MDXRemote
+            source={post.content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </div>
 
         <div className="hairline mt-20" />
