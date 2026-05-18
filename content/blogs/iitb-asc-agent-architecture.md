@@ -1,0 +1,56 @@
+---
+title: "Navigating Hostile UI: Building a Local-First Agent Playbook"
+description: "How I built a local-first agent kit that defeats IIT Bombay's legacy ASC portal using Chrome remote debugging and operational playbooks."
+date: 2026-05-18
+author: Harshit Singh
+tags: ["automation", "ai", "agents", "chrome-cdp", "python"]
+readingTime: 5 min
+draft: false
+---
+
+# Navigating Legacy Institutional UI: Building a Local-First Agent Playbook
+
+General-purpose AI agents fail miserably at legacy institutional web portals. 
+
+If you ask an LLM to "find me good electives for this semester," it doesn't know how to handle campus VPN requirements. It can't navigate hidden iframes. It gets stuck in session traps, and it certainly doesn't understand the cryptic, department-specific restriction tables buried in a university's database.
+
+At IIT Bombay, the Academic Services portal (ASC) is a high-friction environment. Finding a course means cross-referencing running-course tables, historical grading curves, and eligibility rules across multiple isolated tabs, while avoiding the ever-present "Attempt Logged! Invalid Access" error thrown when you hit pages outside the portal's expected navigation flow.
+
+Writing a traditional scraper for this is fragile. Using a cloud-based AI wrapper is a security risk (you shouldn't hand your university LDAP credentials and session cookies to a remote server). 
+
+The solution is a local-first agent armed with an operational playbook.
+
+This is an unofficial student-built project for personal educational/course-planning use. It is not an IIT Bombay or ASC project, and it does not replace official institute rules, ASC records, faculty-advisor guidance, or the actual registration process.
+
+### The Architecture: Playbooks over Prompts
+
+Instead of trying to build a new AI from scratch, I built an open-source agent kit that teaches an existing local agent how to operate the ASC portal alongside the student.
+
+The core of this kit isn't code; it's `AGENTS.md`. 
+
+`AGENTS.md` acts as a highly specific operational playbook. It injects institutional knowledge directly into the context window of a capable agent (like Claude Code or a local LLM). It tells the agent exactly how the environment works before it takes a single action.
+
+#### 1. Local Execution via Chrome CDP
+To keep authentication entirely local and secure, the agent doesn't use a headless cloud browser. It hooks into the user's active Chrome instance using the Chrome DevTools Protocol (CDP) via remote debugging. 
+* The agent uses the student's existing session cookies.
+* Credentials are never exported, scraped, or committed. 
+* The agent drives the browser through the same form POSTs and click paths the portal expects, instead of relying on brittle direct links.
+
+#### 2. Handling State and Network
+The playbook teaches the agent to check the environment first. Is ASC actually ready, or is the machine merely able to open an IITB landing page?
+
+This distinction matters. With VPN disconnected, `asc.iitb.ac.in` may still accept HTTPS and redirect to `landing.iitb.ac.in` for a captcha/SSO gate. That is not enough for ASC automation. The agent has to inspect the final URL: if it stays on ASC, proceed; if it redirects to the landing page, ask the user to complete that flow or connect through VPN.
+
+#### 3. Parsing Institutional Logic
+Once inside, the agent doesn't just read the DOM; it applies institutional heuristics. It navigates to the running courses table, parses the hidden "Restrictions" rows, and filters out courses the student isn't eligible for based on their batch and department. 
+
+It then pulls historical grading statistics—weighing the sample size (n), the fail rates (FF/FR), and the percentage of top grades (AA/AB)—to rank the electives, actively avoiding courses with small sample sizes or severe grading curves.
+
+### The Future of Ambient Intelligence
+
+This project was a practical excuse to explore a broader thesis: the future of AI isn't a smarter chatbot in a cloud window. It is local, context-aware agents operating on your machine, using your local browser/session without exporting credentials or cookies, and executing tedious workflows in messy real-world environments.
+
+We don't need to rebuild the internet to make it AI-friendly. We just need to give our agents the right playbooks to navigate the internet we already have.
+
+***
+*The IITB ASC Course Agent Kit is open-source. You can find the macOS/Linux setup, the browser-harness scripts, and the `AGENTS.md` playbook [on GitHub](https://github.com/harshitsinghbhandari/iitb-asc-course-agent-kit).*
