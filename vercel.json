@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/tools",
+      "destination": "https://tools.theharshitsingh.com",
+      "permanent": true
+    },
+    {
+      "source": "/tools/:path*",
+      "destination": "https://tools.theharshitsingh.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/static",
+      "destination": "https://static.theharshitsingh.com",
+      "permanent": true
+    },
+    {
+      "source": "/static/:path*",
+      "destination": "https://static.theharshitsingh.com/:path*",
+      "permanent": true
+    }
+  ]
+}
