@@ -1,67 +1,70 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import Ferrofluid from './Ferrofluid'
+
+const word = 'Harshit Singh'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="container-page pt-24 md:pt-32 pb-20 md:pb-28">
+    <section className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <Ferrofluid
+          colors={['#e63946', '#ededef', '#8a8a93']}
+          speed={0.35}
+          scale={1.8}
+          turbulence={1.1}
+          fluidity={0.12}
+          rimWidth={0.22}
+          sharpness={2.4}
+          shimmer={1.4}
+          glow={1.8}
+          opacity={0.85}
+          flowDirection="down"
+          mouseInteraction
+          mouseStrength={1.1}
+          mouseRadius={0.4}
+        />
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center text-center">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="label mb-8 flex items-center gap-3"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="label mb-6 flex items-center gap-3"
         >
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_2px_rgba(167,139,250,0.6)]" />
-          iit bombay · 2nd year · open to internships
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_12px_2px_rgba(230,57,70,0.6)]" />
+          iit bombay · 3rd year · open to internships
         </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="font-sans text-[clamp(40px,7vw,84px)] font-semibold leading-[1.02] tracking-[-0.025em]"
-        >
-          Harshit Singh
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-6 max-w-2xl text-[clamp(18px,2vw,24px)] leading-[1.45] text-muted"
-        >
-          Building systems, agents, and <span className="text-text">local-first AI</span>
-          {' '}— ambient intelligence that speaks, watches, and remembers without
-          giving any of it up to the cloud.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 flex flex-wrap items-center gap-3"
-        >
-          <Link
-            href="#work"
-            className="rounded-md bg-accent px-5 py-2.5 font-mono text-2xs text-bg no-underline transition-opacity hover:opacity-90"
+        <h1 className="font-display text-display" aria-label={word + ','}>
+          {word.split('').map((c, i) => (
+            <motion.span
+              key={i}
+              initial={{ opacity: 0, y: 40, rotateX: -45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{
+                duration: 0.9,
+                delay: 0.4 + i * 0.04,
+                ease: [0.2, 0.8, 0.2, 1],
+              }}
+              className="inline-block"
+              aria-hidden="true"
+            >
+              {c === ' ' ? ' ' : c}
+            </motion.span>
+          ))}
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 + word.length * 0.04 + 0.2 }}
+            className="inline-block text-accent"
+            aria-hidden="true"
           >
-            See the work
-          </Link>
-          <Link
-            href="/writing"
-            className="rounded-md border border-border px-5 py-2.5 font-mono text-2xs text-text no-underline transition-colors hover:border-white/20"
-          >
-            Read the writing
-          </Link>
-          <a
-            href="mailto:harshitsingh@iitb.ac.in"
-            className="rounded-md border border-transparent px-5 py-2.5 font-mono text-2xs text-muted no-underline transition-colors hover:text-text"
-          >
-            harshitsingh@iitb.ac.in
-          </a>
-        </motion.div>
+            ,
+          </motion.span>
+        </h1>
       </div>
     </section>
   )
