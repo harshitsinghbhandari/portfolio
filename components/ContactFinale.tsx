@@ -21,7 +21,7 @@ export default function ContactFinale() {
   const xTouch = useTransform(scrollYProgress, [0.0, 0.25], ['0%', '120%'])
   const titleOpacity = useTransform(scrollYProgress, [0.18, 0.3], [1, 0])
 
-  // Contact takeover — fades up to fill the screen as the title leaves.
+  // Contact takeover: fades up to fill the screen as the title leaves.
   const contactOpacity = useTransform(scrollYProgress, [0.25, 0.5], [0, 1])
   const contactScale = useTransform(scrollYProgress, [0.25, 0.5], [0.9, 1])
   const contactY = useTransform(scrollYProgress, [0.25, 0.5], [60, 0])
@@ -29,7 +29,7 @@ export default function ContactFinale() {
   return (
     <section ref={ref} id="contact" className="relative h-[220vh]">
       <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
-        {/* Layer 1 — splitting title */}
+        {/* Layer 1: splitting title */}
         <motion.div
           style={{ opacity: titleOpacity }}
           className="pointer-events-none absolute inset-0 flex flex-col justify-center"
@@ -50,7 +50,7 @@ export default function ContactFinale() {
           <span className="sr-only">Get in touch.</span>
         </motion.div>
 
-        {/* Layer 2 — full-screen contact */}
+        {/* Layer 2: full-screen contact */}
         <motion.div
           style={{ opacity: contactOpacity, scale: contactScale, y: contactY }}
           className="relative z-10 flex h-full flex-col justify-center px-6 md:px-16"
