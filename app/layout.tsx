@@ -18,22 +18,21 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL('https://theharshitsingh.com'),
   title: {
-    default: 'Harshit Singh — Systems, Agents, Local-first AI',
-    template: '%s — Harshit Singh',
+    default: 'Harshit Singh: Systems, Agents, Local-first AI',
+    template: '%s · Harshit Singh',
   },
   description:
-    'Harshit Singh — building systems, agents, and local-first AI. IIT Bombay.',
+    'Harshit Singh: building systems, agents, and local-first AI. IIT Bombay.',
   openGraph: {
     type: 'website',
     url: 'https://theharshitsingh.com',
     siteName: 'Harshit Singh',
-    title: 'Harshit Singh — Systems, Agents, Local-first AI',
-    description:
-      'Building systems, agents, and local-first AI. IIT Bombay.',
+    title: 'Harshit Singh: Systems, Agents, Local-first AI',
+    description: 'Building systems, agents, and local-first AI. IIT Bombay.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Harshit Singh — Systems, Agents, Local-first AI',
+    title: 'Harshit Singh: Systems, Agents, Local-first AI',
     description: 'Building systems, agents, and local-first AI.',
   },
   icons: {

@@ -17,14 +17,14 @@ const panes: Pane[] = [
     headlinePrefix: 'I build ',
     rotatingWords: ['agents', 'systems', 'rails', 'orchestrators'],
     headlineSuffix: ' that stay reliable in the dark.',
-    body: 'Low-level execution environments and safety rails that make autonomous agents trustworthy. My thesis is ambient intelligence — voice, screen, memory — without giving any of it to the cloud.',
+    body: 'Low-level execution environments and safety rails that make autonomous agents trustworthy. My thesis is ambient intelligence: voice, screen, memory, without giving any of it to the cloud.',
   },
   {
     eyebrow: 'BUILDING WHAT MATTERS',
     headlinePrefix: 'Infrastructure for ',
     rotatingWords: ['autonomy', 'agents', 'execution', 'privacy'],
     headlineSuffix: ', not wrappers.',
-    body: 'Wrappers are easy. The infrastructure underneath — deterministic state, parallel execution, native OS capability, safety rails — is where reliability is decided. That is where I want to be.',
+    body: 'Wrappers are easy. The infrastructure underneath (deterministic state, parallel execution, native OS capability, safety rails) is where reliability is decided. That is where I want to be.',
   },
   {
     eyebrow: 'IIT BOMBAY · IEOR · CLASS OF 2028',

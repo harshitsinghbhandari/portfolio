@@ -38,7 +38,10 @@ export default function Hero() {
           iit bombay · 3rd year · open to internships
         </motion.p>
 
-        <h1 className="font-display text-display" aria-label={word + ','}>
+        <h1
+          className="font-display text-display"
+          aria-label="Harshit Singh, systems, agents, and local-first AI, IIT Bombay"
+        >
           {word.split('').map((c, i) => (
             <motion.span
               key={i}
@@ -64,6 +67,9 @@ export default function Hero() {
           >
             ,
           </motion.span>
+          <span className="sr-only">
+            Harshit Singh, systems, agents, and local-first AI engineer at IIT Bombay.
+          </span>
         </h1>
       </div>
     </section>

@@ -21,7 +21,7 @@ const tiles: Tile[] = [
     category: 'AGENT INFRASTRUCTURE',
     name: 'Agent Orchestrator',
     tagline:
-      '#1 contributor — 7,500★. Deterministic backend state for parallel agent workflows. github.com/AgentWrapper/agent-orchestrator',
+      '#1 contributor, 7,500★. Deterministic backend state for parallel agent workflows. github.com/AgentWrapper/agent-orchestrator',
     href: 'https://github.com/AgentWrapper/agent-orchestrator',
     image: '/hero/ao-board.png',
     imageAlt: 'Agent Orchestrator board with parallel agent sessions',
@@ -79,7 +79,7 @@ export default function WorkGrid() {
               )}
               <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12">
                 <p className="label mb-3">
-                  {tile.index} — {tile.category}
+                  {tile.index} · {tile.category}
                 </p>
                 <h3 className="font-display text-[clamp(40px,5vw,80px)] leading-[1.02] tracking-[-0.03em]">
                   {tile.name}
