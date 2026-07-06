@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
-import Socials from '@/components/Socials'
 import PostList from '@/components/PostList'
+import { PROJECTS } from '@/lib/work'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -27,75 +26,48 @@ const personLd = {
   ],
 }
 
-const link = 'text-accent no-underline hover:underline underline-offset-4'
+const projects = PROJECTS.filter((p) => p.kind === 'case')
 
 export default function HomePage() {
   return (
-    <div className="container-page pb-24 pt-10 md:pt-14">
+    <div className="container-page pb-24 pt-12 md:pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
 
-      <section className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
-        <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full sm:h-32 sm:w-32">
-          <Image
-            src="/hsb.jpg"
-            alt="Harshit Singh"
-            fill
-            sizes="128px"
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-text md:text-4xl">
-            Hi, I&apos;m Harshit Singh.
-          </h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-muted md:text-base">
-            Agent infrastructure · local-first AI · OS-level systems · building in public
+      <section>
+        <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
+          Harshit Singh
+        </h1>
+        <p className="mt-3 text-muted">Systems &amp; AI infrastructure · IIT Bombay</p>
+
+        <div className="mt-8 space-y-5 text-[16px] leading-[1.75] text-text/85">
+          <p>
+            I keep{' '}
+            <Link
+              href="/work/agent-orchestrator"
+              className="text-accent no-underline hover:underline underline-offset-4"
+            >
+              Agent Orchestrator
+            </Link>
+            , a 7,600-star system for running many coding agents in parallel, shipping and
+            coherent. I am its release owner: I hold the npm publish token and own
+            end-to-end correctness on a ground-up rewrite while live installs keep working.
           </p>
-          <div className="mt-5">
-            <Socials />
-          </div>
+          <p>
+            The rest of my time goes to local-first AI: agents with native OS capability
+            that keep your data on your machine, and the safety rails that make them
+            trustworthy. I would rather write the execution environment than one more
+            wrapper. Third-year IEOR at IIT Bombay, open to internships in agent
+            infrastructure and OS-level systems.
+          </p>
         </div>
       </section>
 
-      <div className="mt-14 space-y-5 text-[16px] leading-[1.75] text-text/85">
-        <p>
-          I keep{' '}
-          <Link href="/work/agent-orchestrator" className={link}>
-            Agent Orchestrator
-          </Link>{' '}
-          shipping and coherent: an open-source system for running many coding agents in
-          parallel on your codebase, at around 7,600 stars. I am its release owner and a top
-          contributor. I hold the npm publish token and own end-to-end correctness on a
-          ground-up rewrite while live installs keep working.
-        </p>
-        <p>
-          Outside of that I build local-first AI: agents with native OS capability that keep
-          your data on your machine.{' '}
-          <Link href="/work/donna" className={link}>
-            Donna
-          </Link>{' '}
-          watches my screen and messages, builds a private searchable memory, and answers on
-          demand, all on device.{' '}
-          <Link href="/work/aegis" className={link}>
-            Aegis
-          </Link>{' '}
-          gates real OS actions behind risk tiers and biometric confirmation. I would rather
-          write the execution environment and the safety rails than one more wrapper.
-        </p>
-        <p>
-          I am a third-year IEOR student at IIT Bombay. I am open to internships in agent
-          infrastructure, local-first AI, and OS-level systems. I write here because thinking
-          in public is the honest way to work things out.
-        </p>
-      </div>
-
-      <section className="mt-20">
-        <div className="mb-6 flex items-baseline justify-between">
-          <p className="label">Recent posts</p>
+      <section className="mt-16">
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="text-lg font-semibold tracking-tight text-text">Writing</h2>
           <Link
             href="/writing"
             className="text-sm text-muted no-underline transition-colors hover:text-text"
@@ -104,6 +76,24 @@ export default function HomePage() {
           </Link>
         </div>
         <PostList limit={5} />
+      </section>
+
+      <section className="mt-16">
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-text">Projects</h2>
+        <ul className="divide-y divide-border border-t border-border">
+          {projects.map((p) => (
+            <li key={p.slug}>
+              <Link href={p.href} className="group block py-5 no-underline">
+                <h3 className="font-medium text-text transition-colors group-hover:text-accent">
+                  {p.name}
+                </h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-muted">
+                  {p.whatItIs}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   )

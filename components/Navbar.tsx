@@ -6,10 +6,10 @@ export default function Navbar() {
       <nav className="flex items-center justify-between py-6" aria-label="Primary">
         <Link
           href="/"
-          className="font-semibold text-text no-underline"
+          className="font-semibold tracking-tight text-text no-underline"
           aria-label="Home"
         >
-          theharshitsingh.com
+          Harshit Singh
         </Link>
         <div className="flex items-center gap-6 text-sm text-muted">
           <Link href="/writing" className="no-underline transition-colors hover:text-text">
