@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/Hero'
 import AboutSplit from '@/components/AboutSplit'
-import WorkGrid from '@/components/WorkGrid'
+import SelectedWork from '@/components/SelectedWork'
 import NotesPreview from '@/components/NotesPreview'
 import ContactFinale from '@/components/ContactFinale'
 
@@ -37,7 +37,7 @@ export default function HomePage() {
       />
       <Hero />
       <AboutSplit />
-      <WorkGrid />
+      <SelectedWork />
       <NotesPreview />
       <ContactFinale />
     </>
