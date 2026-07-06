@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Hero from '@/components/Hero'
-import AboutSplit from '@/components/AboutSplit'
 import SelectedWork from '@/components/SelectedWork'
-import NotesPreview from '@/components/NotesPreview'
-import ContactFinale from '@/components/ContactFinale'
+import WritingList from '@/components/WritingList'
+import About from '@/components/About'
+import Contact from '@/components/Contact'
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -36,10 +36,10 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
       <Hero />
-      <AboutSplit />
       <SelectedWork />
-      <NotesPreview />
-      <ContactFinale />
+      <WritingList />
+      <About />
+      <Contact />
     </>
   )
 }
