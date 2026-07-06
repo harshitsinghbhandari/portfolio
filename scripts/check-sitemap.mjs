@@ -24,3 +24,9 @@ if (missing.length) {
   process.exit(1)
 }
 console.log(`OK: all ${slugs.length} published posts are in the sitemap.`)
+
+if (!xml.includes('/work/')) {
+  console.error('Sitemap is missing /work/ entries.')
+  process.exit(1)
+}
+console.log('OK: sitemap includes at least one /work/ entry.')
