@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import { Instrument_Serif } from 'next/font/google'
+import { Newsreader } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollToTop from '@/components/ScrollToTop'
-import CursorFollower from '@/components/CursorFollower'
 import './globals.css'
 
-const instrumentSerif = Instrument_Serif({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  weight: '400',
-  variable: '--font-instrument-serif',
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-newsreader',
   display: 'swap',
 })
 
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} dark`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${newsreader.variable} dark`}
     >
       <body className="min-h-dvh bg-bg text-text antialiased">
         <a
@@ -57,7 +57,6 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <CursorFollower />
         <Navbar />
         <main id="main">{children}</main>
         <Footer />

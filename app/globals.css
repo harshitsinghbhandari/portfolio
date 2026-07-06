@@ -50,7 +50,7 @@
   }
 
   .font-display {
-    font-family: var(--font-instrument-serif), ui-serif, Georgia, serif;
+    font-family: var(--font-newsreader), ui-serif, Georgia, serif;
   }
 
   .accent-dot::before {
@@ -109,4 +109,14 @@
   display: block;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

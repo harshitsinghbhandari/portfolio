@@ -11,24 +11,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: '#08080a',
-        surface: '#0e0e11',
-        border: '#1e1e23',
-        text: '#ededef',
+        bg: '#0a0a0b',
+        surface: '#111113',
+        border: '#1e1e22',
+        text: '#f1efea',
         muted: '#8a8a93',
         subtle: '#5b5b63',
-        accent: '#e63946',
+        accent: '#c8443f',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
-        serif: ['var(--font-instrument-serif)', 'ui-serif', 'Georgia', 'serif'],
+        serif: ['var(--font-newsreader)', 'ui-serif', 'Georgia', 'serif'],
       },
       fontSize: {
         '2xs': ['10px', { lineHeight: '1.4', letterSpacing: '0.08em' }],
-        display: ['clamp(72px, 11vw, 180px)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
-        section: ['clamp(80px, 14vw, 220px)', { lineHeight: '0.9', letterSpacing: '-0.04em' }],
-        finale: ['clamp(120px, 22vw, 360px)', { lineHeight: '0.88', letterSpacing: '-0.04em' }],
+        hero: ['clamp(38px, 6vw, 80px)', { lineHeight: '1.04', letterSpacing: '-0.02em' }],
+        section: ['clamp(26px, 3vw, 44px)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        title: ['clamp(24px, 2.6vw, 40px)', { lineHeight: '1.06', letterSpacing: '-0.02em' }],
       },
       maxWidth: {
         prose: '720px',
