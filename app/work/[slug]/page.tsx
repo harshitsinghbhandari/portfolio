@@ -39,7 +39,6 @@ export default function WorkPage({ params }: WorkPageProps) {
   const category = doc.category as string | undefined
   const status = doc.status as string | undefined
   const role = doc.role as string | undefined
-  const stack = doc.stack as string | undefined
   const repo = doc.repo as string | undefined
 
   const ld = {
@@ -55,33 +54,29 @@ export default function WorkPage({ params }: WorkPageProps) {
   }
 
   return (
-    <article className="container-page pt-24 pb-24 md:pt-32">
+    <article className="container-page pb-24 pt-10 md:pt-14">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <div className="mx-auto w-full max-w-[920px] lg:max-w-[980px]">
-        <Link href="/#work" className="label inline-flex items-center gap-2 no-underline transition-colors hover:text-text">
-          <span aria-hidden="true">←</span> back to work
-        </Link>
-        <header className="mt-10 mb-12">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            {category && <span className="label">{category}</span>}
-            {status && (<><span className="label">·</span><span className="label">{status}</span></>)}
-          </div>
-          <h1 className="mt-5 font-display text-section text-text">{doc.title}</h1>
-          <p className="mt-4 max-w-[760px] text-lg leading-relaxed text-muted">{doc.description}</p>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-1 font-mono text-2xs text-subtle">
-            {role && <span>ROLE: {role}</span>}
-            {stack && <span>STACK: {stack}</span>}
-            {repo && (
-              <a href={repo} target="_blank" rel="noopener noreferrer" className="text-accent no-underline hover:underline underline-offset-4">
-                REPO →
-              </a>
-            )}
-          </div>
-          <div className="hairline mt-10" />
-        </header>
-        <div className="prose-writing">
-          <MDXRemote source={doc.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+      <Link href="/" className="text-sm text-muted no-underline transition-colors hover:text-text">
+        ← Home
+      </Link>
+      <header className="mb-10 mt-8">
+        <h1 className="font-mono text-2xl font-bold leading-snug tracking-tight text-text md:text-3xl">
+          {doc.title}
+        </h1>
+        <p className="mt-4 text-[15px] leading-relaxed text-muted">{doc.description}</p>
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs text-subtle">
+          {category && <span>{category}</span>}
+          {status && <span>{status}</span>}
+          {role && <span>{role}</span>}
+          {repo && (
+            <a href={repo} target="_blank" rel="noopener noreferrer" className="text-accent no-underline hover:underline underline-offset-4">
+              repo →
+            </a>
+          )}
         </div>
+      </header>
+      <div className="prose-writing">
+        <MDXRemote source={doc.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
       </div>
     </article>
   )

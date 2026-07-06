@@ -30,7 +30,7 @@ export default function OgImage({ params }: { params: { slug: string } }) {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 26, color: '#8a8a93' }}>
-          <div style={{ width: 14, height: 14, borderRadius: 9999, background: '#c8443f' }} />
+          <div style={{ width: 14, height: 14, borderRadius: 9999, background: '#9d8cf0' }} />
           Harshit Singh · Writing
         </div>
         <div style={{ display: 'flex', fontSize: 64, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.1 }}>

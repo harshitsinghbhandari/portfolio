@@ -56,64 +56,43 @@ export default function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <article className="container-page pt-24 pb-24 md:pt-32">
+    <article className="container-page pb-24 pt-10 md:pt-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
-      <div className="mx-auto w-full max-w-[920px] lg:max-w-[980px]">
+      <Link
+        href="/writing"
+        className="text-sm text-muted no-underline transition-colors hover:text-text"
+      >
+        ← Writing
+      </Link>
+
+      <header className="mb-10 mt-8">
+        <h1 className="font-mono text-2xl font-bold leading-snug tracking-tight text-text md:text-3xl">
+          {post.title}
+        </h1>
+        <p className="mt-4 font-mono text-xs text-subtle">
+          {formatPostDate(post.date)}
+          {post.readingTime ? ` · ${post.readingTime}` : ''}
+        </p>
+      </header>
+
+      <div className="prose-writing">
+        <MDXRemote
+          source={post.content}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
+      </div>
+
+      <div className="hairline mt-16" />
+      <div className="mt-8">
         <Link
           href="/writing"
-          className="label inline-flex items-center gap-2 no-underline transition-colors hover:text-text"
+          className="text-sm text-muted no-underline transition-colors hover:text-text"
         >
-          <span aria-hidden="true">←</span> back to writing
+          ← More writing
         </Link>
-
-        <header className="mt-10 mb-12">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="label">{formatPostDate(post.date)}</span>
-            {post.readingTime && (
-              <>
-                <span className="label">·</span>
-                <span className="label">{post.readingTime}</span>
-              </>
-            )}
-          </div>
-          <h1 className="mt-5 font-display text-section text-text">
-            {post.title}
-          </h1>
-          <p className="mt-4 max-w-[760px] text-lg leading-relaxed text-muted">
-            {post.description}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-1.5">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="font-mono text-2xs text-subtle"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
-          <div className="hairline mt-10" />
-        </header>
-
-        <div className="prose-writing">
-          <MDXRemote
-            source={post.content}
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          />
-        </div>
-
-        <div className="hairline mt-20" />
-        <div className="mt-10">
-          <Link
-            href="/writing"
-            className="label inline-flex items-center gap-2 no-underline transition-colors hover:text-text"
-          >
-            <span aria-hidden="true">←</span> more writing
-          </Link>
-        </div>
       </div>
     </article>
   )

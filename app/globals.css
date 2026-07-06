@@ -21,11 +21,10 @@
     font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-feature-settings: 'ss01', 'cv11';
   }
 
   ::selection {
-    background: theme('colors.accent / 30%');
+    background: theme('colors.accent / 25%');
     color: theme('colors.text');
   }
 
@@ -38,47 +37,25 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-page px-6 md:px-10;
+    @apply mx-auto w-full max-w-page px-5 sm:px-6;
   }
 
   .label {
-    @apply font-mono text-2xs uppercase text-muted;
+    @apply font-mono text-2xs uppercase tracking-[0.1em] text-subtle;
   }
 
   .hairline {
     @apply h-px w-full bg-border;
   }
-
-  .font-display {
-    font-family: var(--font-newsreader), ui-serif, Georgia, serif;
-  }
-
-  .accent-dot::before {
-    content: '';
-    display: inline-block;
-    width: 0.42em;
-    height: 0.42em;
-    border-radius: 9999px;
-    background: theme('colors.accent');
-    margin-right: 0.32em;
-    transform: translateY(-0.18em);
-  }
-}
-
-.ferrofluid-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 .prose-writing {
   @apply prose prose-invert max-w-none
-    prose-headings:font-display prose-headings:tracking-tight prose-headings:text-text
-    prose-h1:text-4xl prose-h1:font-medium
-    prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-4 prose-h2:font-medium
-    prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:font-medium
-    prose-p:text-base prose-p:leading-[1.75] prose-p:text-text/80
+    prose-headings:font-sans prose-headings:tracking-tight prose-headings:text-text
+    prose-h1:text-3xl prose-h1:font-semibold
+    prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:font-semibold
+    prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-3 prose-h3:font-semibold
+    prose-p:text-[16px] prose-p:leading-[1.75] prose-p:text-text/85
     prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4
     prose-strong:text-text prose-strong:font-semibold
     prose-em:italic
@@ -86,15 +63,11 @@
     prose-code:before:hidden prose-code:after:hidden
     prose-pre:bg-surface prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:text-[13px] prose-pre:leading-[1.7]
     prose-blockquote:border-l-2 prose-blockquote:border-accent/40 prose-blockquote:not-italic prose-blockquote:text-muted
-    prose-li:text-text/80 prose-li:marker:text-accent/60
+    prose-li:text-text/85 prose-li:marker:text-accent/60
     prose-hr:border-border
     prose-img:rounded-lg prose-img:border prose-img:border-border
     prose-table:text-[14px] prose-th:border-b prose-th:border-border prose-th:text-text
-    prose-td:border-b prose-td:border-border/70 prose-td:text-text/80;
-}
-
-.prose-writing :where(p, ul, ol, blockquote):not(:where(.not-prose *)) {
-  max-width: 760px;
+    prose-td:border-b prose-td:border-border/70 prose-td:text-text/85;
 }
 
 .prose-writing :where(pre, table):not(:where(.not-prose *)) {

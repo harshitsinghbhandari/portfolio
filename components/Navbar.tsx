@@ -1,35 +1,39 @@
 import Link from 'next/link'
 
-const links = [
-  { label: 'Work', href: '/#work' },
-  { label: 'Writing', href: '/writing' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/#contact' },
-]
-
 export default function Navbar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-bg/70 backdrop-blur">
-      <nav
-        className="container-page flex h-14 items-center justify-between"
-        aria-label="Primary"
-      >
-        <Link href="/" className="font-display text-xl text-text no-underline" aria-label="Home">
-          Harshit Singh<span className="text-accent">.</span>
+    <div className="container-page">
+      <nav className="flex items-center justify-between py-6" aria-label="Primary">
+        <Link
+          href="/"
+          className="font-semibold text-text no-underline"
+          aria-label="Home"
+        >
+          theharshitsingh.com
         </Link>
-        <ul className="flex items-center gap-5 md:gap-7">
-          {links.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className="font-mono text-2xs uppercase tracking-[0.14em] text-muted no-underline transition-colors hover:text-text"
-              >
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-6 text-sm text-muted">
+          <Link href="/writing" className="no-underline transition-colors hover:text-text">
+            Writing
+          </Link>
+          <a
+            href="https://github.com/harshitsinghbhandari"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline transition-colors hover:text-text"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://x.com/HSBhandari955"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline transition-colors hover:text-text"
+          >
+            X
+          </a>
+        </div>
       </nav>
-    </header>
+      <div className="hairline" />
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { getAllPosts, formatPostDate } from '@/lib/writing'
+import PostList from '@/components/PostList'
 
 export const metadata: Metadata = {
   title: 'Writing',
@@ -10,62 +9,16 @@ export const metadata: Metadata = {
 }
 
 export default function WritingIndexPage() {
-  const posts = getAllPosts()
-
   return (
-    <div className="container-page pt-24 pb-20 md:pt-32">
-      <header className="mb-16 md:mb-20">
-        <p className="label mb-4">writing</p>
-        <h1 className="font-sans text-4xl font-semibold tracking-tight md:text-5xl">
-          Notes on building.
-        </h1>
-        <p className="mt-4 max-w-prose text-muted">
-          Long-form notes on agents, local-first AI, and the systems that hold
-          them up. Mostly debugging stories.
+    <div className="container-page pb-24 pt-10 md:pt-14">
+      <header className="mb-10">
+        <h1 className="text-4xl font-bold tracking-tight text-text">Writing</h1>
+        <p className="mt-3 text-muted">
+          Notes on agents, local-first AI, and the systems that hold them up. Mostly
+          debugging stories.
         </p>
       </header>
-
-      {posts.length === 0 ? (
-        <p className="text-muted">No posts yet.</p>
-      ) : (
-        <ul className="divide-y divide-border border-y border-border">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link
-                href={`/writing/${post.slug}`}
-                className="group block py-8 no-underline transition-colors hover:bg-white/[0.015] md:py-10"
-              >
-                <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
-                  <div className="flex-1">
-                    <p className="font-mono text-2xs text-subtle mb-2">{formatPostDate(post.date)}</p>
-                    <h2 className="font-display text-title text-text transition-colors group-hover:text-accent">
-                      {post.title}
-                    </h2>
-                    <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-muted">
-                      {post.description}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-2xs text-subtle"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  {post.readingTime && (
-                    <span className="font-mono text-2xs text-subtle md:ml-8">
-                      {post.readingTime}
-                    </span>
-                  )}
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <PostList />
     </div>
   )
 }
