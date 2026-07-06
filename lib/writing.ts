@@ -6,7 +6,7 @@ import {
   getDocBySlug,
   getSlugs,
   formatDocDate,
-} from './content.ts'
+} from './content'
 
 const WRITING_DIR = path.join(process.cwd(), 'content', 'writing')
 
