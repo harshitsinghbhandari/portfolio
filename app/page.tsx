@@ -51,9 +51,9 @@ export default function HomePage() {
             >
               Agent Orchestrator
             </Link>
-            , a 7,600-star system for running many coding agents in parallel, shipping and
-            coherent. I am its release owner: I hold the npm publish token and own
-            end-to-end correctness on a ground-up rewrite while live installs keep working.
+            , an 8,000+ star system for running many coding agents in parallel, shipping
+            and coherent. I work on backend reliability and backward compatibility, and on
+            making sure what we ship integrates correctly and reaches end users.
           </p>
           <p>
             The rest of my time goes to local-first AI: agents with native OS capability
