@@ -32,6 +32,7 @@ function readDoc(dir: string, slug: string): Doc | null {
       ? data.date.toISOString().slice(0, 10)
       : (data.date ?? '1970-01-01')
   return {
+    ...data,
     slug,
     title: data.title ?? slug,
     date,
