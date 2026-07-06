@@ -37,8 +37,8 @@ export default function WritingIndexPage() {
               >
                 <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
                   <div className="flex-1">
-                    <p className="label mb-2">{formatPostDate(post.date)}</p>
-                    <h2 className="font-sans text-xl font-semibold tracking-tight text-text transition-colors group-hover:text-accent md:text-2xl">
+                    <p className="font-mono text-2xs text-subtle mb-2">{formatPostDate(post.date)}</p>
+                    <h2 className="font-display text-title text-text transition-colors group-hover:text-accent">
                       {post.title}
                     </h2>
                     <p className="mt-2 max-w-prose text-[15px] leading-relaxed text-muted">

@@ -79,7 +79,7 @@ export default function PostPage({ params }: PostPageProps) {
               </>
             )}
           </div>
-          <h1 className="mt-5 font-sans text-3xl font-semibold tracking-tight text-text md:text-4xl">
+          <h1 className="mt-5 font-display text-section text-text">
             {post.title}
           </h1>
           <p className="mt-4 max-w-[760px] text-lg leading-relaxed text-muted">
