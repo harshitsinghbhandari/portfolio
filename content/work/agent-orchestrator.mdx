@@ -1,0 +1,33 @@
+---
+title: Agent Orchestrator
+date: 2026-01-15
+description: Release owner and migration lead on a 7.6k-star orchestrator for parallel coding agents.
+category: Agent infrastructure
+status: Shipped
+role: Release owner, integration lead
+stack: TypeScript, Node, npm
+repo: https://github.com/AgentWrapper/agent-orchestrator
+tags: [agents, orchestration, release-engineering]
+---
+
+## The reusable idea
+
+Deterministic backend state is what lets many agents run in parallel without corrupting each other. A SQLite inbox with a strict message envelope means every worker sees the same queue, in order, without races. That pattern scales; the clever prompt does not.
+
+## What it is
+
+Agent Orchestrator is an open-source orchestrator for parallel coding agents (roughly 7.6k stars). It plans tasks, spawns agents, and handles CI fixes, merge conflicts, and code reviews autonomously. My seat is release owner: I decide what ships to npm and I hold the publish token. I am also integration and migration lead on the ground-up rewrite, the person who owns end-to-end correctness, and the one who holds the whole-system map.
+
+## The engineering that actually takes
+
+A toy agent demo runs once on a clean machine. A popular multi-agent system runs on thousands of other people's machines, every day, while you are rewriting its core underneath them.
+
+The hard part is keeping 25 or more agents coherent under contention: PTY slots, a shared SQLite inbox, native `better-sqlite3` ABI mismatches across Node versions. Every release is a state migration on machines you cannot see.
+
+Release ownership means owning the blast radius. The install command must pull the new core and port all old config silently, or someone's working setup dies on upgrade. The migration must be invisible to existing users. On the backend I built the multi-model tiered architecture, the durable SQLite inbox, and worker-to-orchestrator messaging (PR #1787), plus the artifact and canvas system. A lot of the real work was unglamorous: debugging PTY-slot contention and `better-sqlite3` failures at the boundary of 25 parallel agents.
+
+The maintainer seat is the credential because it is the part almost nobody does. "I build agents" is unprovable and crowded. "I am trusted to ship a popular one" is rarer, because the bottleneck on multi-agent systems was never building one. It is keeping one coherent: migrations that do not break users, releases that are reversible, correctness that holds under contention.
+
+## Honest limitations
+
+This repo is a fork. The upstream lineage (Composio, then AgentWrapper) is real and the star count is the project's, earned by many people. I own a slice of it, not all of it. Scaling past 25 agents and the push-vs-pull artifact question were still open as of recent work. The fail-closed behavior on ABI mismatches is good engineering but was not designed from first principles. It accumulated from debugging sessions.

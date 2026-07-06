@@ -1,0 +1,31 @@
+---
+title: Donna
+date: 2026-01-05
+description: A local-first macOS ambient assistant that watches your screen, builds memory, and answers via Discord DM.
+category: Local-first AI
+status: Shipped, v0.3.0
+role: Sole author
+stack: Python, SQLite, FTS5, Ollama, Apple Vision
+repo: https://github.com/harshitsinghbhandari/donna
+tags: [local-first, ambient-intelligence, macos, memory]
+---
+
+## The reusable idea
+
+Separate the capture layer from the answer surface. Most assistants make capture loud (notifications, check-ins, integrations) and answer cheap (a single query). Donna inverts it: capture is silent and continuous, the answer is the only thing you experience. The product is the gap between "how does she know that?" and the fact that she does.
+
+## What it is
+
+Donna is a local-first macOS ambient assistant. It watches your screen and your DMs, builds a model of your work over time, and answers when you ask. The design choice that defines it: reactive, not voice-first, not proactive. No nudges, no notifications, no wake word. Screen capture, OCR, redaction, and memory accumulation all run silently. You only ever touch the answer surface by DMing a Discord bot. State stays under `~/.donna/` and nothing leaves the machine except the calls the enabled mode actually needs.
+
+## The engineering that actually takes
+
+The hard problem is turning a raw screen feed into durable, retrievable memory without leaking secrets and without paying for a vision-LLM call on every frame. Screenshots are noisy, redundant, and full of API keys. The pipeline is: deduplication, Apple Vision OCR, then a pure redaction pass before anything is stored.
+
+Redaction is two stages. First: known key prefixes (`sk-ant-` before `sk-`, so Anthropic keys are not swallowed by a generic OpenAI pattern). Second: a Shannon-entropy heuristic for unknown secret shapes, with hex and UUID carve-outs to cut false positives.
+
+Projects are not configured; they are discovered. `donna screen summarize` embeds transcripts with a local Ollama model and runs single-linkage cosine clustering in pure numpy. The algorithm is deterministic and order-independent. An autonomous distiller then asks the model what is worth remembering long-term, clamps a confidence score, and writes it to SQLite with FTS5. The distiller swallows every per-row failure so one bad summary never stops the run.
+
+## Honest limitations
+
+The brain still calls Gemini, so Donna is local-first but not local-only. Entropy-based redaction is a heuristic: it will miss low-entropy secrets (short API keys, short passwords) and over-redact some random-looking strings. Clustering is O(n squared) on the similarity matrix, which is fine at personal scale but not at archive scale. macOS only; the Apple Vision dependency is not portable.

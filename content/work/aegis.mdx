@@ -1,0 +1,31 @@
+---
+title: Aegis
+date: 2025-12-20
+description: A voice-controlled, biometric-secured AI agent for macOS with risk-tiered execution and fail-closed authorization.
+category: Agent safety
+status: Shipped, hackathon build
+role: Sole author
+stack: Python, Gemini Live API, WebAuthn, Firestore, pyautogui
+repo: https://github.com/harshitsinghbhandari/gemini-live-hackathon
+tags: [agent-safety, biometric, macos, desktop-automation]
+---
+
+## The reusable idea
+
+Gate on intent and irreversibility, not on capability. Put the authorization decision in a second model call the executor cannot bypass, route the dangerous tier to an out-of-band device so a compromised desktop cannot self-approve, and fail closed. That pattern outlives any specific hackathon or LLM.
+
+## What it is
+
+Aegis is a voice-controlled, biometric-secured AI agent for macOS. It listens, watches the screen through the Gemini Live API, and operates the desktop with native screen control (pyautogui, screenshots, OCR) rather than brittle DOM scraping. Built for the Gemini Live Agent Challenge. It participated; it did not win. The part worth keeping is the boundary between the model and the machine, not the demo.
+
+## The engineering that actually takes
+
+An agent that can click anything on your screen is one bad inference away from sending the wrong email or deleting the wrong folder. Today's agents sit at two extremes: fully autonomous (dangerous with full machine access) or fully manual (which defeats the purpose). The real question is what must sit between a real-time multimodal model and a live user account before desktop automation is acceptable.
+
+Every proposed action is intercepted before it touches the machine. A separate Gemini classifier (not the conversation stream) scores each call on irreversibility. The tier is based on the action, not the tool name: `keyboard_type` is Green for a search query, Yellow for a draft, Red for a secret. Green runs silently. Yellow needs a verbal "yes." Red hard-blocks until an out-of-band Touch ID or mobile Face ID (WebAuthn) approval returns.
+
+The invariant: Gemini can propose an action, it cannot directly execute one. Classifier parse failures and unexpected errors fail closed to Red. Every attempt writes one audit envelope (tier, tool, args, auth status, result) streamed to a dashboard over Firestore and SSE.
+
+## Honest limitations
+
+The risk classifier is itself an LLM, so its judgment is probabilistic. The fail-closed default is the hedge, not a proof. STRIDE-style threat modeling is on the list but was not done for the shipped build. Screen-layer control means grounding and latency are ongoing problems: the model sometimes clicks the wrong element on dense UIs. The biometric flow adds real latency to Red-tier actions, which makes it annoying to use for anything that touches sensitive data frequently.
