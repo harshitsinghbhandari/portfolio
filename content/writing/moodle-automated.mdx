@@ -32,13 +32,13 @@ That's exactly what I built.
 
 ## How it works
 
-The tool connects to a real Chrome session using the Chrome DevTools Protocol (CDP). No headless browser, no Selenium, no Playwright. It talks to your actual logged-in Chrome — the one where you're already authenticated into Moodle.
+The tool connects to a real Chrome session using the Chrome DevTools Protocol (CDP). No headless browser, no Selenium, no Playwright. It talks to your actual logged-in Chrome: the one where you're already authenticated into Moodle.
 
 The stack is dead simple:
 
-- **browser-harness** — an open source CDP wrapper (~600 lines of Python)
-- **A thin Moodle layer** — ~300 lines that know Moodle's selectors, URL patterns, and quirks
-- **Discord webhook** — because why check grades anywhere else
+- **browser-harness:** an open source CDP wrapper (~600 lines of Python)
+- **A thin Moodle layer:** ~300 lines that know Moodle's selectors, URL patterns, and quirks
+- **Discord webhook:** because why check grades anywhere else
 
 The architecture looks like this:
 
@@ -83,7 +83,7 @@ files = download_submission("IE 201", "lab 02")
 # -> downloads/24b4506_LabL2.zip (311KB)
 ```
 
-The trick here was using `fetch()` inside the browser context — Moodle requires authentication, so a raw HTTP request from Python would just get a login page. By running fetch through CDP, the browser's session cookies ride along automatically.
+The trick here was using `fetch()` inside the browser context: Moodle requires authentication, so a raw HTTP request from Python would just get a login page. By running fetch through CDP, the browser's session cookies ride along automatically.
 
 **Post to Discord:**
 
@@ -91,17 +91,17 @@ The trick here was using `fetch()` inside the browser context — Moodle require
 post_discord(fmt_grades(g, "Data Analytics"))
 ```
 
-Reads the webhook URL from `.env` and posts via httpx. (Fun fact: Discord's Cloudflare blocks Python's urllib — learned that the hard way.)
+Reads the webhook URL from `.env` and posts via httpx. (Fun fact: Discord's Cloudflare blocks Python's urllib; learned that the hard way.)
 
 ## The hard parts
 
 A few things I discovered while building this:
 
-**Moodle renders course cards lazily.** The page reports `document.readyState === 'complete'` almost immediately, but the actual course cards take ~15 seconds to appear in the DOM. You can't just `wait_for_load()` — you have to poll for the selector.
+**Moodle renders course cards lazily.** The page reports `document.readyState === 'complete'` almost immediately, but the actual course cards take ~15 seconds to appear in the DOM. You can't just `wait_for_load()`. You have to poll for the selector.
 
 **Grade table cells are messy.** Each grade item is prefixed with its type ("AssignmentLab 03 submission") and the grade cell has "Actions Grade analysis" appended to the number. Parsing requires stripping both.
 
-**Everything is duplicated in the DOM.** Course sections appear twice — once in the main content and once in the sidebar course index. Activities are doubled too. If you `querySelectorAll` without scoping, you get 2x results.
+**Everything is duplicated in the DOM.** Course sections appear twice: once in the main content and once in the sidebar course index. Activities are doubled too. If you `querySelectorAll` without scoping, you get 2x results.
 
 **Course IDs and activity IDs are different things.** Courses use `?id=8627` on `/course/view.php`, activities use `?id=83144` on `/mod/assign/view.php`. Same parameter name, completely different ID spaces.
 
@@ -128,15 +128,15 @@ It's three steps:
 2. Log into Moodle in that browser
 3. `from moodle.moodle import *; connect()`
 
-The debug profile persists your session, so you only log in once. The `connect()` function auto-discovers the WebSocket URL from Chrome's debug endpoint — no hardcoded UUIDs.
+The debug profile persists your session, so you only log in once. The `connect()` function auto-discovers the WebSocket URL from Chrome's debug endpoint; no hardcoded UUIDs.
 
 ## What's next
 
 A few things I want to add:
 
-- **Deadline tracker** — scrape assignment due dates across all courses, post daily reminders to Discord
-- **Grade diff notifications** — run on a cron, compare with last known grades, alert on changes
-- **Bulk download** — grab all lecture PDFs and resources from a course in one go
+- **Deadline tracker:** scrape assignment due dates across all courses, post daily reminders to Discord
+- **Grade diff notifications:** run on a cron, compare with last known grades, alert on changes
+- **Bulk download:** grab all lecture PDFs and resources from a course in one go
 
 The whole thing is [on GitHub](https://github.com/harshitsinghbhandari/moodle-automated) if you want to fork it for your own university's Moodle. The Moodle-specific selectors will vary, but the architecture and the CDP approach work anywhere.
 

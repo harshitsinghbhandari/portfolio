@@ -1,6 +1,6 @@
 ---
 title: "I Built a CLI That Turns My 2am Discord Idea Dumps Into Actual Plans"
-description: "How I built Donna — a local-first Python CLI that reads raw ideas from Discord, runs them through Gemini, and posts a structured briefing back. No cloud, no account, no app."
+description: "How I built Donna, a local-first Python CLI that reads raw ideas from Discord, runs them through Gemini, and posts a structured briefing back. No cloud, no account, no app."
 date: 2026-04-26
 author: Harshit Singh
 tags: ["automation", "python", "cli", "gemini", "discord", "llm"]
@@ -10,7 +10,7 @@ draft: false
 
 # I Built a CLI That Turns My 2am Discord Idea Dumps Into Actual Plans
 
-I have a problem. I get ideas constantly — walking to class, in the middle of a lab, at 2am when I should be sleeping. Most of them are half-formed garbage. Some of them are actually good. The issue is I can never tell which is which at the time, so I dump everything into a private Discord channel called `#ideas`.
+I have a problem. I get ideas constantly: walking to class, in the middle of a lab, at 2am when I should be sleeping. Most of them are half-formed garbage. Some of them are actually good. The issue is I can never tell which is which at the time, so I dump everything into a private Discord channel called `#ideas`.
 
 After a few weeks I had 200+ messages in there. A wall of noise I never went back to read. Ideas were dying in a channel that was supposed to save them.
 
@@ -75,7 +75,7 @@ That's it. No web UI, no database, no cloud service. Just a Python CLI that live
 
 Five stages, five modules. Each one does exactly one thing.
 
-**Fetcher** pulls messages from the Discord API using bot authentication. It paginates through up to 500 messages per run, handles rate limiting with automatic retry, skips bot messages and empty content, and deduplicates by message ID. It uses a watermark system — after each successful run, it saves the last processed message ID so the next run only fetches new messages.
+**Fetcher** pulls messages from the Discord API using bot authentication. It paginates through up to 500 messages per run, handles rate limiting with automatic retry, skips bot messages and empty content, and deduplicates by message ID. It uses a watermark system: after each successful run, it saves the last processed message ID so the next run only fetches new messages.
 
 **Agent** sends the raw messages to Gemini's API with a system instruction that forces JSON output:
 
@@ -88,11 +88,11 @@ All fields are required:
 summary, decisions, build, research, tasks, someday, discard, top3"""
 ```
 
-The `responseMimeType: "application/json"` parameter in the Gemini request helps, but LLMs still occasionally wrap JSON in markdown fences. There's a repair step — if the first response doesn't parse, it sends the invalid output back with a "fix this" prompt. Two tries is enough.
+The `responseMimeType: "application/json"` parameter in the Gemini request helps, but LLMs still occasionally wrap JSON in markdown fences. There's a repair step: if the first response doesn't parse, it sends the invalid output back with a "fix this" prompt. Two tries is enough.
 
 **Formatter** takes the structured data and turns it into clean text with markdown headers and bullet points. Simple string assembly, nothing clever.
 
-**Dispatcher** posts the formatted briefing to Discord. If the content exceeds Discord's 2000-character limit, it splits on line boundaries rather than cutting mid-sentence. It also supports email via SMTP — I have it configured but rarely use it.
+**Dispatcher** posts the formatted briefing to Discord. If the content exceeds Discord's 2000-character limit, it splits on line boundaries rather than cutting mid-sentence. It also supports email via SMTP; I have it configured but rarely use it.
 
 ## The watermark trick
 
@@ -108,11 +108,11 @@ Donna is stateful. After each run, it saves to `~/.donna/state.json`:
 }
 ```
 
-The `last_message_id` is a Discord snowflake — a 64-bit integer that encodes the creation timestamp. When Donna fetches messages, it passes this as the `after` parameter to Discord's API, so it only gets messages newer than the watermark.
+The `last_message_id` is a Discord snowflake: a 64-bit integer that encodes the creation timestamp. When Donna fetches messages, it passes this as the `after` parameter to Discord's API, so it only gets messages newer than the watermark.
 
 This means you can run `donna brief` on a cron and it'll process exactly the ideas you dumped since the last run. No duplicates, no re-processing.
 
-If you want to override this — say, to review the last week — there's `--since`:
+If you want to override this (say, to review the last week), there's `--since`:
 
 ```bash
 donna brief --since 7d --dry-run
@@ -190,11 +190,11 @@ Recent empty messages ignored: 0
 Gemini: ok - reachable
 ```
 
-It checks everything — is the CLI on PATH, can it load the config, can it reach both Discord channels, are there actual usable messages in `#ideas`, can it talk to Gemini. Each check is a real API call, not a config lint.
+It checks everything: is the CLI on PATH, can it load the config, can it reach both Discord channels, are there actual usable messages in `#ideas`, can it talk to Gemini. Each check is a real API call, not a config lint.
 
 ## How I actually use it
 
-I have a private Discord server with two channels: `#ideas` and `#briefings`. Throughout the day, I dump thoughts into `#ideas` from my phone — voice-to-text, screenshots, half-sentences, whatever. No formatting, no overthinking.
+I have a private Discord server with two channels: `#ideas` and `#briefings`. Throughout the day, I dump thoughts into `#ideas` from my phone: voice-to-text, screenshots, half-sentences, whatever. No formatting, no overthinking.
 
 Every morning, either I run `donna brief` manually or a cron does it at 5am:
 
@@ -210,27 +210,27 @@ It's like having an executive assistant who reads your brain dump and gives you 
 
 Intentionally minimal:
 
-- **Python 3.11+** — stdlib only for most things
-- **requests** — for Discord and Gemini API calls
-- **python-dotenv** — for loading secrets from `.env`
-- **tomllib** — for config parsing (built into Python 3.11)
-- **Gemini 2.5 Flash** — fast, cheap, follows JSON schemas well
+- **Python 3.11+:** stdlib only for most things
+- **requests:** for Discord and Gemini API calls
+- **python-dotenv:** for loading secrets from `.env`
+- **tomllib:** for config parsing (built into Python 3.11)
+- **Gemini 2.5 Flash:** fast, cheap, follows JSON schemas well
 
 No frameworks, no ORM, no async, no dependency tree from hell. The entire codebase is ~800 lines across 10 modules. Every module is under 150 lines.
 
-The error handling is aggressive. Custom exception hierarchy (`DonnaError` → `ConfigError`, `StateError`, `DiscordError`, `AgentError`, `DispatchError`) so failures are always traced to the right layer. State only updates after successful dispatch — if Gemini times out or Discord rejects the post, the watermark doesn't move, and the next run picks up where this one failed.
+The error handling is aggressive. Custom exception hierarchy (`DonnaError` → `ConfigError`, `StateError`, `DiscordError`, `AgentError`, `DispatchError`) so failures are always traced to the right layer. State only updates after successful dispatch: if Gemini times out or Discord rejects the post, the watermark doesn't move, and the next run picks up where this one failed.
 
 ## What's next
 
 Donna v1 is a CLI that you trigger manually. The [vision](https://github.com/harshitsinghbhandari/donna/blob/main/donna-vision.html) is much bigger:
 
-- **Universal capture** — not just Discord. Voice memos, screenshots, Telegram, email, a browser extension. Zero-friction input from everywhere.
-- **Background daemon** — instead of `donna brief` once a day, Donna runs continuously, watching all your inboxes and delivering briefings on a schedule.
-- **Idea memory** — a persistent knowledge graph that links related ideas across weeks and months. "You said something about auth middleware three weeks ago, and today's idea connects to it."
-- **Action pipeline** — one tap from a briefing item to a GitHub issue, a Linear task, a calendar block. The gap between intent and execution, collapsed.
-- **Pattern intelligence** — Donna learns when you're most creative, what topics you obsess over, your idea-to-action conversion rate. A mirror for how you think.
+- **Universal capture:** not just Discord. Voice memos, screenshots, Telegram, email, a browser extension. Zero-friction input from everywhere.
+- **Background daemon:** instead of `donna brief` once a day, Donna runs continuously, watching all your inboxes and delivering briefings on a schedule.
+- **Idea memory:** a persistent knowledge graph that links related ideas across weeks and months. "You said something about auth middleware three weeks ago, and today's idea connects to it."
+- **Action pipeline:** one tap from a briefing item to a GitHub issue, a Linear task, a calendar block. The gap between intent and execution, collapsed.
+- **Pattern intelligence:** Donna learns when you're most creative, what topics you obsess over, your idea-to-action conversion rate. A mirror for how you think.
 
-The architecture is already composable — fetcher, agent, formatter, dispatcher are independent modules. Swapping Gemini for Claude or Discord for Telegram is a config change, not a rewrite.
+The architecture is already composable: fetcher, agent, formatter, dispatcher are independent modules. Swapping Gemini for Claude or Discord for Telegram is a config change, not a rewrite.
 
 ## Try it
 

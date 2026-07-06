@@ -10,7 +10,7 @@ draft: false
 
 # I Built a CLI That Compiles My Discord Into a Personal Profile for AI Agents
 
-A few weeks ago I built [Donna](https://github.com/harshitsinghbhandari/donna) — a CLI that takes my 2am Discord idea dumps and turns them into structured briefings. Then I built a [Study Buddy](https://github.com/harshitsinghbhandari/study-buddy) that watches what I'm reading and posts study summaries. Then I [automated Moodle](https://github.com/harshitsinghbhandari/moodle-automated) so I never have to open it again.
+A few weeks ago I built [Donna](https://github.com/harshitsinghbhandari/donna), a CLI that takes my 2am Discord idea dumps and turns them into structured briefings. Then I built a [Study Buddy](https://github.com/harshitsinghbhandari/study-buddy) that watches what I'm reading and posts study summaries. Then I [automated Moodle](https://github.com/harshitsinghbhandari/moodle-automated) so I never have to open it again.
 
 Across all of these, the output goes to one place: a private Discord server with a channel per system. `#briefings`, `#screen-summaries`, `#email-summaries`, `#moodle-info`, `#groww`. Five channels, each one a firehose of automated context about my life.
 
@@ -36,10 +36,10 @@ The output is a directory of markdown files at `~/.discord-archive/context/`:
 
 ```text
 ~/.discord-archive/context/
-├── profile.md              # who I am — durable
-├── current-state.md        # what I'm working on — medium-term
-├── memory-candidates.md    # worksheet — promote to long-term?
-├── ephemeral.md            # explicit anti-list — DO NOT save
+├── profile.md              # who I am, durable
+├── current-state.md        # what I'm working on, medium-term
+├── memory-candidates.md    # worksheet: promote to long-term?
+├── ephemeral.md            # explicit anti-list: DO NOT save
 ├── topics/
 │   ├── projects.md
 │   ├── preferences.md
@@ -49,7 +49,7 @@ The output is a directory of markdown files at `~/.discord-archive/context/`:
     └── 2026-W20.md         # one per ISO week
 ```
 
-Hermes loads this directory as project context. Now every conversation starts with full context about who I am and what I'm doing — drawn from automated streams I never have to manually curate.
+Hermes loads this directory as project context. Now every conversation starts with full context about who I am and what I'm doing, drawn from automated streams I never have to manually curate.
 
 ## The architecture
 
@@ -59,7 +59,7 @@ Two stages, each doing what it's good at.
 Discord channels → SQLite + FTS5 → Stage 1 (Ollama) → Stage 2 (Gemini) → markdown
 ```
 
-**Stage 1: Ollama summarizes each `(channel, ISO week)` into terse markdown.** Why per-window? It keeps each prompt small enough for a local model, and the cache lets re-runs skip windows that haven't changed. Per channel per week is the natural granularity — Discord activity bursts in clumps.
+**Stage 1: Ollama summarizes each `(channel, ISO week)` into terse markdown.** Why per-window? It keeps each prompt small enough for a local model, and the cache lets re-runs skip windows that haven't changed. Per channel per week is the natural granularity: Discord activity bursts in clumps.
 
 **Stage 2: Gemini reads all the Stage 1 summaries and composes the final artifacts.** Profile, current state, ephemeral anti-list, topic files, timelines, and a structured memory-candidates worksheet. Gemini is much better at instruction-following and structured output, so it gets the heavy thinking and judgment calls.
 
@@ -83,11 +83,11 @@ stage2_model: gemini-3.1-pro-preview
 
 The three types are the load-bearing idea:
 
-- **`durable`** — identity, long-held preferences, stable people. Goes into Hermes long-term memory.
-- **`medium_term`** — current projects, active priorities, open loops. Useful for weeks to months; refresh each build.
-- **`ephemeral`** — chatter, weekly digests, transient signals. Background context only. **Never** promote to long-term.
+- **`durable`:** identity, long-held preferences, stable people. Goes into Hermes long-term memory.
+- **`medium_term`:** current projects, active priorities, open loops. Useful for weeks to months; refresh each build.
+- **`ephemeral`:** chatter, weekly digests, transient signals. Background context only. **Never** promote to long-term.
 
-There's also an explicit `ephemeral.md` artifact — an anti-list of things that look transient and must NOT enter Hermes's memory. This is the part I'm most paranoid about. The whole point of the taxonomy is to stop the AI from treating my mood-of-the-day as identity.
+There's also an explicit `ephemeral.md` artifact: an anti-list of things that look transient and must NOT enter Hermes's memory. This is the part I'm most paranoid about. The whole point of the taxonomy is to stop the AI from treating my mood-of-the-day as identity.
 
 ## The review gate
 
@@ -115,11 +115,11 @@ The `memory-candidates.md` file is a worksheet:
 - gemini-note: repeated stable preference across 2 channels
 ```
 
-I edit `status` to `accepted` or `rejected`. Across rebuilds, decisions persist — accepted/rejected items aren't re-proposed. Only `proposed` items get refreshed when Gemini re-runs.
+I edit `status` to `accepted` or `rejected`. Across rebuilds, decisions persist: accepted/rejected items aren't re-proposed. Only `proposed` items get refreshed when Gemini re-runs.
 
 ## The Ollama-shaped problem
 
-The first version of this had Ollama producing strict JSON with pydantic validation. The schema enforced citations, importance scores, stability hints — everything Stage 2 needed.
+The first version of this had Ollama producing strict JSON with pydantic validation. The schema enforced citations, importance scores, stability hints: everything Stage 2 needed.
 
 It didn't work.
 
@@ -132,7 +132,7 @@ I had it backwards. The right split is:
 - **Ollama: text → text.** Free-form markdown summarization. Just preserve the signal, cite message IDs as `[msg:123]`, and skip pleasantries.
 - **Gemini: text → structure.** All schema enforcement, all judgment calls, all the structured output goes here.
 
-This flipped the failure modes. Ollama is now happy writing prose. Gemini handles JSON natively (Google's models are very good at this). The memory-candidates worksheet, which has a strict shape, is now Gemini's job to emit — and it does it cleanly.
+This flipped the failure modes. Ollama is now happy writing prose. Gemini handles JSON natively (Google's models are very good at this). The memory-candidates worksheet, which has a strict shape, is now Gemini's job to emit, and it does so cleanly.
 
 The change took ~30 minutes:
 
@@ -149,7 +149,7 @@ Another fun one. My first sync pulled exactly 1 message out of channels containi
 
 The reason: I had a `if msg.author.bot: continue` line in the sync code. Discord marks webhook posts and bot-account posts with `author.bot == True`. My channels are populated by Donna, Summarizer Bot, Moodle Bot, Groww Portfolio Bot, and a thing called Captain Hook. All bots. All filtered.
 
-For most Discord servers, "skip bots" is the right default — bot output is noise. For *this* use case it's the opposite: the bots ARE the signal. They post automated summaries of my life. That's exactly what I want archived.
+For most Discord servers, "skip bots" is the right default: bot output is noise. For *this* use case it's the opposite: the bots ARE the signal. They post automated summaries of my life. That's exactly what I want archived.
 
 So the filter got deleted. Two-line diff. 109 messages appeared in the next sync.
 
@@ -174,13 +174,13 @@ If Hermes says "you said X" and I want to verify, one command takes me to the or
 
 ## The stack
 
-- **Python 3.12** — argparse, stdlib `sqlite3`, `tomllib`
-- **discord.py** — REST only, no gateway. The bot script connects, pulls, exits.
-- **SQLite + FTS5** — single-file archive. WAL mode, foreign keys on, full-text search built in.
-- **PyYAML** — for safe frontmatter serialization (rolled my own at first, then I tried to put `"yes"` in a value, lost an afternoon, switched to `yaml.safe_dump`).
-- **Pydantic** — only in Stage 1's old life. Now gone from the hot path.
-- **Ollama** — local-first by intent; I'm on Ollama Cloud's `ministral-3:14b-cloud` since I don't want to spin a fan up.
-- **Gemini 3.1 Pro Preview** — for stage 2.
+- **Python 3.12:** argparse, stdlib `sqlite3`, `tomllib`
+- **discord.py:** REST only, no gateway. The bot script connects, pulls, exits.
+- **SQLite + FTS5:** single-file archive. WAL mode, foreign keys on, full-text search built in.
+- **PyYAML:** for safe frontmatter serialization (rolled my own at first, then I tried to put `"yes"` in a value, lost an afternoon, switched to `yaml.safe_dump`).
+- **Pydantic:** only in Stage 1's old life. Now gone from the hot path.
+- **Ollama:** local-first by intent; I'm on Ollama Cloud's `ministral-3:14b-cloud` since I don't want to spin a fan up.
+- **Gemini 3.1 Pro Preview:** for stage 2.
 
 The CLI is 8 subcommands: `init`, `sync`, `build-context`, `diff`, `promote`, `status`, `open`, `search`. Each is its own ~30-line file under `commands/`. The CLI dispatcher itself is ~70 lines.
 
@@ -204,11 +204,11 @@ It's boring, which is exactly why it works.
 
 ## What's next
 
-- **`promote-memory` command** — push `status: accepted` items from `memory-candidates.md` directly into Hermes's memory API. Right now I do this by hand.
-- **Multi-guild** — currently one personal server. The architecture supports more; just hasn't been wired.
-- **Daily window fallback** — when a `(channel, week)` exceeds `max_messages_per_window`, sub-chunk by day instead of skipping.
-- **Embeddings + semantic search** — Hermes already does its own retrieval, so this isn't urgent. But if I ever want cross-system "find related ideas," `pgvector` slots in cleanly.
-- **MCP server** — expose `archive.db` as MCP tools so other agents (not just Hermes) can query it directly.
+- **`promote-memory` command:** push `status: accepted` items from `memory-candidates.md` directly into Hermes's memory API. Right now I do this by hand.
+- **Multi-guild:** currently one personal server. The architecture supports more; just hasn't been wired.
+- **Daily window fallback:** when a `(channel, week)` exceeds `max_messages_per_window`, sub-chunk by day instead of skipping.
+- **Embeddings + semantic search:** Hermes already does its own retrieval, so this isn't urgent. But if I ever want cross-system "find related ideas," `pgvector` slots in cleanly.
+- **MCP server:** expose `archive.db` as MCP tools so other agents (not just Hermes) can query it directly.
 
 ## Try it
 

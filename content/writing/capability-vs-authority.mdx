@@ -16,7 +16,7 @@ We have largely solved for capability. But we are ignoring the harder infrastruc
 
 An agent that can reliably operate a desktop is inherently dangerous. If a model can open your browser and draft an email, it possesses the mechanical capability to wire money, delete a production database, or wipe a hard drive. The core design question for desktop agents is not "can the model click the button?" It is: **what sits between a real-time multimodal model and a user account before desktop automation becomes acceptable?**
 
-When building Aegis—a local macOS agent orchestrating Gemini Live—I realized that autonomy without governance is just a liability. The system needed a trust boundary.
+When building Aegis (a local macOS agent orchestrating Gemini Live), I realized that autonomy without governance is just a liability. The system needed a trust boundary.
 
 Here is how I built a graduated execution gate that separates an agent's capability to act from its authority to execute.
 
@@ -58,7 +58,7 @@ For Red actions, Aegis halts local execution entirely and shifts to a cloud brok
 
 ### Why This Matters
 
-Most desktop-agent demos are optimized for the happy path. But as we move toward "Local-First AI"—ambient intelligence that runs constantly in the background and reasons over our private context—we cannot rely on the happy path.
+Most desktop-agent demos are optimized for the happy path. But as we move toward "Local-First AI" (ambient intelligence that runs constantly in the background and reasons over our private context), we cannot rely on the happy path.
 
 Aegis assumes that an AI agent with a mouse is dangerous by default. It builds the minimum infrastructure needed to make that danger governable.
 

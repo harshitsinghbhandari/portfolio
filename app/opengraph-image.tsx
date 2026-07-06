@@ -22,7 +22,7 @@ export default function OgImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 28, color: '#8a8a93' }}>
-          <div style={{ width: 14, height: 14, borderRadius: 9999, background: '#e63946' }} />
+          <div style={{ width: 14, height: 14, borderRadius: 9999, background: '#c8443f' }} />
           theharshitsingh.com
         </div>
         <div style={{ display: 'flex', fontSize: 96, fontWeight: 700, marginTop: 24, letterSpacing: '-0.03em' }}>
