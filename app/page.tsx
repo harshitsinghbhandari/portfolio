@@ -22,7 +22,7 @@ const personLd = {
   sameAs: [
     'https://github.com/harshitsinghbhandari',
     'https://www.linkedin.com/in/harshitsinghbhandari/',
-    'https://x.com/HSBhandari955',
+    'https://x.com/the_hsbhandari',
   ],
 }
 

@@ -24,7 +24,7 @@ export default function Navbar() {
             GitHub
           </a>
           <a
-            href="https://x.com/HSBhandari955"
+            href="https://x.com/the_hsbhandari"
             target="_blank"
             rel="noopener noreferrer"
             className="no-underline transition-colors hover:text-text"
