@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import { formatPostDate, getAllSlugs, getPostBySlug } from '@/lib/writing'
+import { SITE_URL, personRef, feedAlternates } from '@/lib/person'
 
 interface PostPageProps {
   params: { slug: string }
@@ -16,14 +17,18 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: PostPageProps): Metadata {
   const post = getPostBySlug(params.slug)
   if (!post) return {}
+  const metaDescription =
+    post.description.length > 155
+      ? post.description.slice(0, 152).replace(/\s+\S*$/, '') + '…'
+      : post.description
   return {
     title: post.title,
-    description: post.description,
-    alternates: { canonical: `/writing/${params.slug}` },
-    authors: [{ name: 'Harshit Singh', url: 'https://theharshitsingh.com' }],
+    description: metaDescription,
+    alternates: { canonical: `/writing/${params.slug}`, types: feedAlternates },
+    authors: [{ name: 'Harshit Singh', url: `${SITE_URL}/about` }],
     openGraph: {
       title: post.title,
-      description: post.description,
+      description: metaDescription,
       type: 'article',
       url: `/writing/${params.slug}`,
       publishedTime: post.date,
@@ -33,7 +38,7 @@ export function generateMetadata({ params }: PostPageProps): Metadata {
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.description,
+      description: metaDescription,
     },
   }
 }
@@ -49,9 +54,9 @@ export default function PostPage({ params }: PostPageProps) {
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
-    author: { '@type': 'Person', name: 'Harshit Singh', url: 'https://theharshitsingh.com' },
-    url: `https://theharshitsingh.com/writing/${post.slug}`,
-    image: `https://theharshitsingh.com/writing/${post.slug}/opengraph-image`,
+    author: personRef,
+    url: `${SITE_URL}/writing/${post.slug}`,
+    image: `${SITE_URL}/writing/${post.slug}/opengraph-image`,
     keywords: post.tags.join(', '),
   }
 
@@ -73,6 +78,11 @@ export default function PostPage({ params }: PostPageProps) {
           {post.title}
         </h1>
         <p className="mt-4 font-mono text-xs text-subtle">
+          By{' '}
+          <Link href="/about" className="text-subtle underline-offset-4 hover:text-text">
+            Harshit Singh
+          </Link>
+          {' · '}
           {formatPostDate(post.date)}
           {post.readingTime ? ` · ${post.readingTime}` : ''}
         </p>

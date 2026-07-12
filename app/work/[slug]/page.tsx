@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import { getDocBySlug, getSlugs, formatDocDate } from '@/lib/content'
+import { SITE_URL, personRef, feedAlternates } from '@/lib/person'
 
 const WORK_DIR = path.join(process.cwd(), 'content', 'work')
 
@@ -22,7 +23,7 @@ export function generateMetadata({ params }: WorkPageProps): Metadata {
   return {
     title: doc.title,
     description: doc.description,
-    alternates: { canonical: `/work/${params.slug}` },
+    alternates: { canonical: `/work/${params.slug}`, types: feedAlternates },
     openGraph: {
       title: doc.title,
       description: doc.description,
@@ -48,9 +49,9 @@ export default function WorkPage({ params }: WorkPageProps) {
     description: doc.description,
     datePublished: doc.date,
     dateModified: doc.date,
-    author: { '@type': 'Person', name: 'Harshit Singh', url: 'https://theharshitsingh.com' },
-    url: `https://theharshitsingh.com/work/${doc.slug}`,
-    image: `https://theharshitsingh.com/work/${doc.slug}/opengraph-image`,
+    author: personRef,
+    url: `${SITE_URL}/work/${doc.slug}`,
+    image: `${SITE_URL}/work/${doc.slug}/opengraph-image`,
   }
 
   return (

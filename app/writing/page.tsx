@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import PostList from '@/components/PostList'
+import { feedAlternates } from '@/lib/person'
 
 export const metadata: Metadata = {
   title: 'Writing',
   description:
     'Notes on building agents, local-first AI, and the systems that hold them up.',
-  alternates: { canonical: '/writing' },
+  alternates: { canonical: '/writing', types: feedAlternates },
 }
 
 export default function WritingIndexPage() {

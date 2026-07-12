@@ -2,27 +2,26 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PostList from '@/components/PostList'
 import { PROJECTS } from '@/lib/work'
+import { SITE_URL, PERSON_ID, personLd, feedAlternates } from '@/lib/person'
 
 export const metadata: Metadata = {
-  alternates: { canonical: '/' },
+  description:
+    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and local-first AI: Agent Orchestrator, Donna, Aegis. IEOR undergrad at IIT Bombay.',
+  alternates: { canonical: '/', types: feedAlternates },
 }
 
-const personLd = {
+const homeLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Harshit Singh',
-  url: 'https://theharshitsingh.com',
-  image: 'https://theharshitsingh.com/hsb.jpg',
-  email: 'mailto:harshitsingh@iitb.ac.in',
-  jobTitle: 'Systems and AI infrastructure engineer',
-  affiliation: {
-    '@type': 'CollegeOrUniversity',
-    name: 'Indian Institute of Technology Bombay',
-  },
-  sameAs: [
-    'https://github.com/harshitsinghbhandari',
-    'https://www.linkedin.com/in/harshitsinghbhandari/',
-    'https://x.com/the_hsbhandari',
+  '@graph': [
+    personLd,
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Harshit Singh',
+      description: 'Personal site of Harshit Singh Bhandari: systems, agents, and local-first AI.',
+      publisher: { '@id': PERSON_ID },
+    },
   ],
 }
 
@@ -33,7 +32,7 @@ export default function HomePage() {
     <div className="container-page pb-24 pt-12 md:pt-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeLd) }}
       />
 
       <section>

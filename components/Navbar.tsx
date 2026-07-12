@@ -15,6 +15,9 @@ export default function Navbar() {
           <Link href="/writing" className="no-underline transition-colors hover:text-text">
             Writing
           </Link>
+          <Link href="/about" className="no-underline transition-colors hover:text-text">
+            About
+          </Link>
           <a
             href="https://github.com/harshitsinghbhandari"
             target="_blank"

@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { feedAlternates } from '@/lib/person'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -12,18 +13,26 @@ export const metadata: Metadata = {
     template: '%s · Harshit Singh',
   },
   description:
-    'Harshit Singh: building systems, agents, and local-first AI. IIT Bombay.',
+    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and local-first AI: Agent Orchestrator, Donna, Aegis. IEOR undergrad at IIT Bombay.',
+  alternates: { types: feedAlternates },
+  // Search engine ownership verification. Paste tokens and uncomment.
+  // Google Search Console: https://search.google.com/search-console
+  // Bing Webmaster Tools: https://www.bing.com/webmasters
+  // verification: {
+  //   google: 'PASTE_GOOGLE_SEARCH_CONSOLE_TOKEN_HERE',
+  //   other: { 'msvalidate.01': 'PASTE_BING_WEBMASTER_TOKEN_HERE' },
+  // },
   openGraph: {
     type: 'website',
     url: 'https://theharshitsingh.com',
     siteName: 'Harshit Singh',
     title: 'Harshit Singh: Systems, Agents, Local-first AI',
-    description: 'Building systems, agents, and local-first AI. IIT Bombay.',
+    description: 'Harshit Singh (Harshit Singh Bhandari): systems, agents, and local-first AI. IIT Bombay.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Harshit Singh: Systems, Agents, Local-first AI',
-    description: 'Building systems, agents, and local-first AI.',
+    description: 'Harshit Singh (Harshit Singh Bhandari): systems, agents, and local-first AI. IIT Bombay.',
   },
   icons: {
     icon: '/favicon.svg',
