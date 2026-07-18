@@ -58,8 +58,15 @@ export default function HomePage() {
             The rest of my time goes to local-first AI: agents with native OS capability
             that keep your data on your machine, and the safety rails that make them
             trustworthy. I would rather write the execution environment than one more
-            wrapper. Third-year IEOR at IIT Bombay, open to internships in agent
-            infrastructure and OS-level systems.
+            wrapper. Third-year IEOR at IIT Bombay. If you&apos;re building on agent
+            infrastructure and need help with integration, migration, or reliability,{' '}
+            <a
+              href="mailto:harshitsingh@iitb.ac.in"
+              className="text-accent no-underline hover:underline underline-offset-4"
+            >
+              email me
+            </a>
+            .
           </p>
         </div>
       </section>
