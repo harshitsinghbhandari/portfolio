@@ -27,9 +27,9 @@ export const PROJECTS: Project[] = [
   {
     slug: 'donna',
     index: '02',
-    category: 'LOCAL-FIRST AI',
+    category: 'PERSONAL SOFTWARE',
     name: 'Donna',
-    whatItIs: 'A local-first macOS assistant that silently watches screen and DMs, builds retrievable memory, and answers on demand.',
+    whatItIs: 'A macOS assistant that silently watches screen and DMs on-device, builds retrievable memory, and answers on demand.',
     proof: 'v0.3.0 shipped. Apple Vision OCR, entropy-based redaction, single-linkage clustering in pure numpy, SQLite/FTS5 memory.',
     idea: 'Invert the ambient assistant: capture is silent, the answer is the only thing you experience.',
     kind: 'case',
@@ -63,9 +63,9 @@ export const PROJECTS: Project[] = [
   {
     slug: 'emagg',
     index: '05',
-    category: 'LOCAL-FIRST AI',
+    category: 'PERSONAL SOFTWARE',
     name: 'emagg',
-    whatItIs: 'A local-first email aggregator unifying Gmail, Zoho, and raw IMAP into one searchable SQLite inbox.',
+    whatItIs: 'An email aggregator unifying Gmail, Zoho, and raw IMAP into one searchable SQLite inbox on your machine.',
     proof: 'AES-256-GCM credentials at rest, FTS5 search across inboxes, read-only by design.',
     idea: 'Read-only by design removes an entire class of trust problems from email triage.',
     kind: 'repo',

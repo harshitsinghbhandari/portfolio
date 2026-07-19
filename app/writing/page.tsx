@@ -5,7 +5,7 @@ import { feedAlternates } from '@/lib/person'
 export const metadata: Metadata = {
   title: 'Writing',
   description:
-    'Notes on building agents, local-first AI, and the systems that hold them up.',
+    'Notes on building agents, personal software, and the systems that hold them up.',
   alternates: { canonical: '/writing', types: feedAlternates },
 }
 
@@ -15,7 +15,7 @@ export default function WritingIndexPage() {
       <header className="mb-10">
         <h1 className="text-4xl font-bold tracking-tight text-text">Writing</h1>
         <p className="mt-3 text-muted">
-          Notes on agents, local-first AI, and the systems that hold them up. Mostly
+          Notes on agents, personal software, and the systems that hold them up. Mostly
           debugging stories.
         </p>
       </header>

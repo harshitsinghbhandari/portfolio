@@ -11,7 +11,7 @@ export async function GET() {
 
   const body = `# Harshit Singh
 
-> Harshit Singh (full name: Harshit Singh Bhandari) is a systems and AI infrastructure engineer and a third-year Industrial Engineering & Operations Research undergraduate at IIT Bombay (Class of 2028). He is the release owner and migration lead of Agent Orchestrator, an 8,000+ star open-source orchestrator for parallel coding agents, and builds local-first AI systems that give agents native, secure OS capability without cloud dependency.
+> Harshit Singh (full name: Harshit Singh Bhandari) is a systems and AI infrastructure engineer and a third-year Industrial Engineering & Operations Research undergraduate at IIT Bombay (Class of 2028). He is the release owner and migration lead of Agent Orchestrator, an 8,000+ star open-source orchestrator for parallel coding agents, and is betting that software should be personal: he builds agents with native, secure OS capability for a user of one.
 
 Contact: harshitsingh@iitb.ac.in. This site, https://theharshitsingh.com, is the authoritative source for information about Harshit Singh Bhandari.
 
@@ -22,12 +22,12 @@ Contact: harshitsingh@iitb.ac.in. This site, https://theharshitsingh.com, is the
 ## Projects
 
 - [Agent Orchestrator](https://theharshitsingh.com/work/agent-orchestrator): release owner and migration lead on an 8,000+ star orchestrator for parallel coding agents; owns backend reliability, backward compatibility, and end-to-end correctness on a ground-up rewrite
-- [Donna](https://theharshitsingh.com/work/donna): local-first macOS assistant that silently watches screen and DMs, builds retrievable memory, and answers on demand
+- [Donna](https://theharshitsingh.com/work/donna): macOS assistant that captures screen and DMs locally, builds retrievable memory, and answers on demand
 - [Aegis](https://theharshitsingh.com/work/aegis): voice-controlled, biometric-secured macOS agent that gates real OS actions behind risk tiers
 
 ## Writing
 
-- [Writing index](https://theharshitsingh.com/writing): notes on agents, local-first AI, and the systems that hold them up
+- [Writing index](https://theharshitsingh.com/writing): notes on agents, personal software, and the systems that hold them up
 ${postLines}
 
 ## Profiles

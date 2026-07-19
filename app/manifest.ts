@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Harshit Singh',
     short_name: 'Harshit',
-    description: 'Harshit Singh: systems, agents, and local-first AI. IIT Bombay.',
+    description: 'Harshit Singh: systems, agents, and a bet that software should be personal. IIT Bombay.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0b',

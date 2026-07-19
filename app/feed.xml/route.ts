@@ -39,7 +39,7 @@ ${categories}
   <channel>
     <title>Harshit Singh · Writing</title>
     <link>${SITE_URL}/writing</link>
-    <description>Notes on agents, local-first AI, and the systems that hold them up. By Harshit Singh Bhandari.</description>
+    <description>Notes on agents, personal software, and the systems that hold them up. By Harshit Singh Bhandari.</description>
     <language>en</language>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
     <lastBuildDate>${lastBuildDate}</lastBuildDate>

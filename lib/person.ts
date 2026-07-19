@@ -11,7 +11,7 @@ export const personLd = {
   email: 'mailto:harshitsingh@iitb.ac.in',
   jobTitle: 'Systems and AI Infrastructure Engineer',
   description:
-    'Systems and AI infrastructure engineer building agent orchestration and local-first AI. Release owner and migration lead of Agent Orchestrator. Third-year IEOR undergraduate at IIT Bombay.',
+    'Systems and AI infrastructure engineer building agent orchestration and betting that software should be personal. Release owner and migration lead of Agent Orchestrator. Third-year IEOR undergraduate at IIT Bombay.',
   affiliation: {
     '@type': 'CollegeOrUniversity',
     name: 'Indian Institute of Technology Bombay',
@@ -25,7 +25,7 @@ export const personLd = {
   knowsAbout: [
     'AI agents',
     'agent orchestration',
-    'local-first AI',
+    'personal software',
     'systems engineering',
     'backend reliability',
   ],

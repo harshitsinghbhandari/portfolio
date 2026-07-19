@@ -6,7 +6,7 @@ import { SITE_URL, PERSON_ID, personLd, feedAlternates } from '@/lib/person'
 
 export const metadata: Metadata = {
   description:
-    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and local-first AI: Agent Orchestrator, Donna, Aegis. IEOR undergrad at IIT Bombay.',
+    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and a bet that software should be personal: Agent Orchestrator, Donna, Aegis. IEOR undergrad at IIT Bombay.',
   alternates: { canonical: '/', types: feedAlternates },
 }
 
@@ -19,7 +19,7 @@ const homeLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: 'Harshit Singh',
-      description: 'Personal site of Harshit Singh Bhandari: systems, agents, and local-first AI.',
+      description: 'Personal site of Harshit Singh Bhandari: systems, agents, and a bet that software should be personal.',
       publisher: { '@id': PERSON_ID },
     },
   ],
@@ -55,9 +55,9 @@ export default function HomePage() {
             making sure what we ship integrates correctly and reaches end users.
           </p>
           <p>
-            The rest of my time goes to local-first AI: agents with native OS capability
-            that keep your data on your machine, and the safety rails that make them
-            trustworthy. I would rather write the execution environment than one more
+            The rest of my time goes to a bet that software should be personal: agents
+            with native OS capability, and the safety rails that make them trustworthy.
+            I would rather write the execution environment than one more
             wrapper. Third-year IEOR at IIT Bombay. If you&apos;re building on agent
             infrastructure and need help with integration, migration, or reliability,{' '}
             <a

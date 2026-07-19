@@ -68,28 +68,34 @@ export default function AboutPage() {
 
       <section className="mt-16">
         <h2 className="mb-4 text-lg font-semibold tracking-tight text-text">
-          Local-first AI
+          Personal software
         </h2>
         <div className="space-y-5 text-[16px] leading-[1.75] text-text/85">
           <p>
-            Harshit Singh Bhandari builds{' '}
+            Harshit Singh is betting that the best software is forward-deployed to a
+            user of one: the user&apos;s opinions shape the UX, an engineer&apos;s
+            opinions shape the internals. His side projects are where that bet gets
+            tested.
+          </p>
+          <p>
             <Link
               href="/work/donna"
               className="text-accent no-underline hover:underline underline-offset-4"
             >
               Donna
-            </Link>
-            , a local-first macOS assistant that builds retrievable memory from screen and
-            messages, and{' '}
+            </Link>{' '}
+            is a macOS assistant that builds retrievable memory from screen and
+            messages. Capture and preprocessing run on the machine, and screenshots
+            never leave it; the intelligence runs on cloud AI APIs.{' '}
             <Link
               href="/work/aegis"
               className="text-accent no-underline hover:underline underline-offset-4"
             >
               Aegis
-            </Link>
-            , a biometric-secured macOS agent that gates real OS actions behind risk
-            tiers. The through-line across both is giving agents native, secure OS
-            capability without cloud dependency.
+            </Link>{' '}
+            is a biometric-secured macOS agent that gates real OS actions behind risk
+            tiers. The through-line is giving agents native, secure OS capability,
+            built for one user at a time.
           </p>
         </div>
       </section>
@@ -98,8 +104,8 @@ export default function AboutPage() {
         <h2 className="mb-4 text-lg font-semibold tracking-tight text-text">Writing</h2>
         <div className="space-y-5 text-[16px] leading-[1.75] text-text/85">
           <p>
-            Harshit Singh writes about agents, local-first AI, and the systems that hold
-            them up at{' '}
+            Harshit Singh writes about agents, personal software, and the systems that
+            hold them up at{' '}
             <Link
               href="/writing"
               className="text-accent no-underline hover:underline underline-offset-4"

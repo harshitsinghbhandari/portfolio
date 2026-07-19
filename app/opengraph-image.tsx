@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'nodejs'
-export const alt = 'Harshit Singh: Systems, Agents, Local-first AI'
+export const alt = 'Harshit Singh: Systems, agents, and a bet that software should be personal'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -29,7 +29,7 @@ export default function OgImage() {
           Harshit Singh
         </div>
         <div style={{ display: 'flex', fontSize: 40, marginTop: 16, color: '#8a8a93' }}>
-          Systems, agents, and local-first AI
+          Systems, agents, and a bet that software should be personal
         </div>
         <div style={{ display: 'flex', fontSize: 28, marginTop: 40, color: '#8a8a93' }}>IIT Bombay</div>
       </div>
