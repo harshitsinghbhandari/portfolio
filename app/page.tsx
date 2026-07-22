@@ -45,7 +45,6 @@ export default function HomePage() {
             believe I make good judgement calls given the data and conditions. I am
             exploring what to point that on.
           </p>
-          <p className="text-muted">Harshit</p>
         </div>
       </section>
     </div>
