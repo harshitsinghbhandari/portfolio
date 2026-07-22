@@ -12,12 +12,6 @@ export default function Navbar() {
           Harshit Singh
         </Link>
         <div className="flex items-center gap-6 text-sm text-muted">
-          <Link href="/writing" className="no-underline transition-colors hover:text-text">
-            Writing
-          </Link>
-          <Link href="/about" className="no-underline transition-colors hover:text-text">
-            About
-          </Link>
           <a
             href="https://github.com/harshitsinghbhandari"
             target="_blank"

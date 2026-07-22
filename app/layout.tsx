@@ -3,7 +3,6 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { feedAlternates } from '@/lib/person'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,8 +12,7 @@ export const metadata: Metadata = {
     template: '%s · Harshit Singh',
   },
   description:
-    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and a bet that software should be personal: Agent Orchestrator, Donna, Aegis. IEOR undergrad at IIT Bombay.',
-  alternates: { types: feedAlternates },
+    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and a bet that software should be personal: Agent Orchestrator, agentlab.in. IEOR undergrad at IIT Bombay.',
   // Search engine ownership verification. Paste tokens and uncomment.
   // Google Search Console: https://search.google.com/search-console
   // Bing Webmaster Tools: https://www.bing.com/webmasters

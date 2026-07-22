@@ -35,16 +35,3 @@ export const personLd = {
     'https://x.com/the_hsbhandari',
   ],
 }
-
-// Compact author reference for BlogPosting nodes. Keeps name/url inline so the
-// node validates standalone while @id ties it to the homepage Person.
-export const personRef = {
-  '@type': 'Person',
-  '@id': PERSON_ID,
-  name: 'Harshit Singh',
-  url: `${SITE_URL}/about`,
-}
-
-export const feedAlternates = {
-  'application/rss+xml': `${SITE_URL}/feed.xml`,
-}

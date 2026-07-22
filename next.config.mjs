@@ -3,8 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      { source: '/blogs', destination: '/writing', permanent: true },
-      { source: '/blogs/:slug', destination: '/writing/:slug', permanent: true },
+      {
+        source:
+          '/:path((?!tools|static|_next|favicon\\.svg|hsb\\.jpg|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|llms\\.txt|opengraph-image|apple-icon).+)',
+        destination: '/',
+        permanent: true,
+      },
     ]
   },
 }
