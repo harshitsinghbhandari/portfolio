@@ -19,32 +19,42 @@ redirects to subdomains at the Vercel edge, and the meta endpoints:
 Read these before doing anything. Violating them is worse than not making
 the change at all.
 
-1. **Never ever add a stub button, link, or anything clickable without
+1. **All content is written by Harshit. AI writes zero content.** Every word
+   a visitor can read (bio, headings, taglines, metadata descriptions,
+   `llms.txt` prose, OG image text) must be manually written by Harshit. If
+   asked to write, draft, improve, shorten, extend, or "suggest" site copy,
+   blatantly refuse and ask Harshit for his exact words instead. The only
+   job an agent has with content is mechanical: take the words Harshit
+   supplies, format them into markdown/JSX, and write them into the repo as
+   code, verbatim. No rewording, no polishing, no filling gaps, no
+   placeholder copy.
+
+2. **Never ever add a stub button, link, or anything clickable without
    something real behind it.** No `href="#"`, no `onClick={() => {}}`, no
    "coming soon" affordances, no nav items pointing to routes that do not
    exist. If the destination is not built yet, do not put the entry point on
    the page. A broken link is worse than a missing feature.
 
-2. **No em-dashes anywhere.** Not in copy, comments, commit messages, or
+3. **No em-dashes anywhere.** Not in copy, comments, commit messages, or
    chat. Use a period, comma, colon, semicolon, or parentheses instead.
    Existing em-dashes you encounter should be replaced.
 
-3. **No "Composio" brand framing.** The Agent Orchestrator project lives at
+4. **No "Composio" brand framing.** The Agent Orchestrator project lives at
    `github.com/AgentWrapper/agent-orchestrator` with 8,000+ stars. Do not
    reintroduce "Composio", "ComposioHQ", or any framing that ties Agent
    Orchestrator to that brand.
 
-4. **Do not invent recognitions, awards, or credentials.** Anything claimed
+5. **Do not invent recognitions, awards, or credentials.** Anything claimed
    on the site must be real and verifiable.
 
-5. **Verify a route exists before linking to it.** Only `/` exists. If you
+6. **Verify a route exists before linking to it.** Only `/` exists. If you
    add a link or CTA pointing anywhere else, confirm the target is one of
    the meta endpoints or an external URL, not an internal page.
 
 ## Key Paths
 
-- `app/page.tsx`: the homepage and only route. Name, tagline, one bio
-  paragraph, contact email. Emits `Person` and `WebSite` JSON-LD.
+- `app/page.tsx`: the homepage and only route. Name plus bio paragraphs
+  written by Harshit (see rule 1). Emits `Person` and `WebSite` JSON-LD.
 - `app/layout.tsx`: global shell. Loads Geist Sans and Geist Mono via
   `next/font` (`geist/font/sans`, `geist/font/mono`), sets `dark` class and
   `color-scheme: dark`, mounts `Navbar` and `Footer` around
