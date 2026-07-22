@@ -34,7 +34,6 @@ export default function HomePage() {
         <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
           Harshit Singh
         </h1>
-        <p className="mt-3 text-muted">Systems &amp; AI infrastructure · IIT Bombay</p>
         <div className="mt-8 space-y-5 text-[16px] leading-[1.75] text-text/85">
           <p>
             Hi, I am Harshit Singh Bhandari. I am currently in my pre-final year at IIT
