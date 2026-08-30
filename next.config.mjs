@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source:
-          '/:path((?!tools|static|_next|favicon\\.svg|hsb\\.jpg|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|llms\\.txt|opengraph-image|apple-icon).+)',
+          '/:path((?!explanations|tools|static|_next|favicon\\.svg|hsb\\.jpg|robots\\.txt|sitemap\\.xml|manifest\\.webmanifest|llms\\.txt|opengraph-image|apple-icon).+)',
         destination: '/',
         permanent: true,
       },

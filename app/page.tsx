@@ -84,7 +84,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-20 md:mt-24" aria-labelledby="selected-work-heading">
+      <section className="mt-16 md:mt-20" aria-labelledby="explanations-heading">
+        <h2 id="explanations-heading" className="label">
+          Explanations
+        </h2>
+        <p className="mt-5 text-[15px] leading-[1.7] text-muted">
+          I occasionally publish technical explanations of systems I build, design
+          decisions, and ideas around AI agents and infrastructure.
+        </p>
+        <a href="/explanations" className={`${externalLinkClass} mt-4 inline-block text-sm`}>
+          View explanations →
+        </a>
+      </section>
+
+      <section className="mt-16 md:mt-20" aria-labelledby="selected-work-heading">
         <h2 id="selected-work-heading" className="label">
           Selected Work
         </h2>

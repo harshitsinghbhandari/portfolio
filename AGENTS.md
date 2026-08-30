@@ -8,8 +8,8 @@ Harshit Singh's one-page personal site, live at `theharshitsingh.com`. Hosted
 on Vercel, deployed automatically from `main`. Next.js 14 (App Router),
 Tailwind CSS, Geist Sans and Geist Mono via the `geist` package.
 
-The only route is `/`. Every other path 308-redirects to `/` via
-`next.config.mjs`, except `/tools` and `/static`, which `vercel.json`
+The site routes are `/` and `/explanations`. Every other path 308-redirects
+to `/` via `next.config.mjs`, except `/tools` and `/static`, which `vercel.json`
 redirects to subdomains at the Vercel edge, and the meta endpoints:
 `robots.txt`, `sitemap.xml`, `llms.txt`, `manifest.webmanifest`,
 `opengraph-image`, `apple-icon`.
@@ -47,29 +47,31 @@ the change at all.
 5. **Do not invent recognitions, awards, or credentials.** Anything claimed
    on the site must be real and verifiable.
 
-6. **Verify a route exists before linking to it.** Only `/` exists. If you
-   add a link or CTA pointing anywhere else, confirm the target is one of
-   the meta endpoints or an external URL, not an internal page.
+6. **Verify a route exists before linking to it.** The site routes are `/`
+   and `/explanations`. If you add a link or CTA pointing anywhere else,
+   confirm the target is one of the meta endpoints or an external URL, not
+   an internal page.
 
 ## Key Paths
 
-- `app/page.tsx`: the homepage and only route. Name plus bio paragraphs
+- `app/page.tsx`: the homepage. Name plus bio paragraphs
   written by Harshit (see rule 1). Emits `Person` and `WebSite` JSON-LD.
+- `app/explanations/page.tsx`: technical explanations index with video embeds.
 - `app/layout.tsx`: global shell. Loads Geist Sans and Geist Mono via
   `next/font` (`geist/font/sans`, `geist/font/mono`), sets `dark` class and
   `color-scheme: dark`, mounts `Navbar` and `Footer` around
   `<main id="main">`, includes a skip-to-content link.
 - `app/opengraph-image.tsx`, `app/apple-icon.tsx`: root OG image and Apple
   touch icon, generated with `next/og` `ImageResponse`.
-- `app/sitemap.ts`: just `/`.
+- `app/sitemap.ts`: `/` and `/explanations`.
 - `app/robots.ts`: allows `*` plus an explicit allowlist of AI/answer-engine
   crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.), points
   at `/sitemap.xml`.
 - `app/manifest.ts`: PWA manifest.
 - `app/llms.txt/route.ts`: plain-text LLM-facing summary (bio, profile
   links), statically generated.
-- `next.config.mjs`: redirects every path to `/` except the meta endpoints
-  above and `/tools`, `/static` (handled by `vercel.json`).
+- `next.config.mjs`: redirects every path to `/` except `/explanations`, the
+  meta endpoints above, and `/tools`, `/static` (handled by `vercel.json`).
 
 ### Components
 

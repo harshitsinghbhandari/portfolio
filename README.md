@@ -8,7 +8,8 @@ Geist Sans and Geist Mono.
 ```
 app/
 ├── layout.tsx          # Geist fonts, Navbar, Footer, metadata
-├── page.tsx             # The only route: name, tagline, bio
+├── page.tsx             # Homepage: name, bio, explanations, selected work
+├── explanations/        # Technical explanations and video embeds
 ├── robots.ts             # Crawler rules
 ├── sitemap.ts            # Just the homepage
 ├── manifest.ts            # PWA manifest
@@ -20,9 +21,9 @@ components/                # Navbar, Footer
 lib/person.ts               # SITE_URL, PERSON_ID, personLd (schema.org)
 ```
 
-Every path other than `/` permanently redirects to `/` via `next.config.mjs`,
-except `/tools` and `/static`, which `vercel.json` redirects to subdomains at
-the Vercel edge, and the meta endpoints listed above.
+Every path other than `/` and `/explanations` permanently redirects to `/`
+via `next.config.mjs`, except `/tools` and `/static`, which `vercel.json`
+redirects to subdomains at the Vercel edge, and the meta endpoints listed above.
 
 ## Develop
 
