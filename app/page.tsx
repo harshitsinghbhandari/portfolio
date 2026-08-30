@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
-import { SITE_URL, PERSON_ID, personLd } from '@/lib/person'
+import { SITE_DESCRIPTION, SITE_URL, PERSON_ID, personLd } from '@/lib/person'
 
 export const metadata: Metadata = {
-  description:
-    'Harshit Singh (Harshit Singh Bhandari) builds systems, agents, and a bet that software should be personal. IEOR undergrad at IIT Bombay.',
+  description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
 }
 
@@ -16,8 +15,7 @@ const homeLd = {
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: 'Harshit Singh',
-      description:
-        'Personal site of Harshit Singh Bhandari: systems, agents, and a bet that software should be personal.',
+      description: SITE_DESCRIPTION,
       publisher: { '@id': PERSON_ID },
     },
   ],

@@ -1,5 +1,7 @@
 export const SITE_URL = 'https://theharshitsingh.com'
 export const PERSON_ID = `${SITE_URL}/#person`
+export const SITE_DESCRIPTION =
+  'I build infrastructure for AI agents, with a focus on making long-running agent work persistent, observable, and recoverable.'
 
 export const personLd = {
   '@type': 'Person',
@@ -9,9 +11,7 @@ export const personLd = {
   url: SITE_URL,
   image: `${SITE_URL}/hsb.jpg`,
   email: 'mailto:dev@theharshitsingh.com',
-  jobTitle: 'Systems and AI Infrastructure Engineer',
-  description:
-    'Systems and AI infrastructure engineer building agent orchestration and betting that software should be personal. Release owner and migration lead of Agent Orchestrator. Third-year IEOR undergraduate at IIT Bombay.',
+  description: SITE_DESCRIPTION,
   affiliation: {
     '@type': 'CollegeOrUniversity',
     name: 'Indian Institute of Technology Bombay',
@@ -22,13 +22,6 @@ export const personLd = {
     name: 'Indian Institute of Technology Bombay',
     sameAs: 'https://www.iitb.ac.in',
   },
-  knowsAbout: [
-    'AI agents',
-    'agent orchestration',
-    'personal software',
-    'systems engineering',
-    'backend reliability',
-  ],
   sameAs: [
     'https://github.com/harshitsinghbhandari',
     'https://www.linkedin.com/in/harshitsinghbhandari/',

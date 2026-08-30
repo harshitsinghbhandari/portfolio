@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next'
+import { SITE_DESCRIPTION } from '@/lib/person'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Harshit Singh',
     short_name: 'Harshit',
-    description: 'Harshit Singh: systems, agents, and a bet that software should be personal. IIT Bombay.',
+    description: SITE_DESCRIPTION,
     start_url: '/',
     display: 'standalone',
     background_color: '#0a0a0b',
