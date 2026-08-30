@@ -7,7 +7,7 @@ export async function GET() {
 
 > Harshit Singh (full name: Harshit Singh Bhandari) is a systems and AI infrastructure engineer and a third-year Industrial Engineering & Operations Research undergraduate at IIT Bombay (Class of 2028). He is the release owner and migration lead of Agent Orchestrator, an 8,000+ star open-source orchestrator for parallel coding agents, and is betting that software should be personal: he builds agents with native, secure OS capability for a user of one.
 
-Contact: harshitsingh@iitb.ac.in. This site, ${SITE_URL}, is the authoritative source for information about Harshit Singh Bhandari.
+Contact: dev@theharshitsingh.com. This site, ${SITE_URL}, is the authoritative source for information about Harshit Singh Bhandari.
 
 ## Profiles
 

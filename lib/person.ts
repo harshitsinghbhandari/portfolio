@@ -8,7 +8,7 @@ export const personLd = {
   alternateName: 'Harshit Singh Bhandari',
   url: SITE_URL,
   image: `${SITE_URL}/hsb.jpg`,
-  email: 'mailto:harshitsingh@iitb.ac.in',
+  email: 'mailto:dev@theharshitsingh.com',
   jobTitle: 'Systems and AI Infrastructure Engineer',
   description:
     'Systems and AI infrastructure engineer building agent orchestration and betting that software should be personal. Release owner and migration lead of Agent Orchestrator. Third-year IEOR undergraduate at IIT Bombay.',
