@@ -3,20 +3,20 @@ import Link from 'next/link'
 export default function Navbar() {
   return (
     <div className="container-page">
-      <nav className="flex items-center justify-between py-6" aria-label="Primary">
+      <nav className="flex items-center justify-between gap-4 py-4" aria-label="Primary">
         <Link
           href="/"
-          className="font-semibold tracking-tight text-text no-underline"
+          className="inline-flex min-h-11 shrink-0 items-center font-semibold tracking-tight text-text no-underline"
           aria-label="Home"
         >
           Harshit Singh
         </Link>
-        <div className="flex items-center gap-6 text-sm text-muted">
+        <div className="flex items-center gap-2 text-sm text-muted sm:gap-4">
           <a
             href="https://github.com/harshitsinghbhandari"
             target="_blank"
             rel="noopener noreferrer"
-            className="no-underline transition-colors hover:text-text"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 no-underline transition-colors hover:text-text"
           >
             GitHub
           </a>
@@ -24,7 +24,7 @@ export default function Navbar() {
             href="https://x.com/the_hsbhandari"
             target="_blank"
             rel="noopener noreferrer"
-            className="no-underline transition-colors hover:text-text"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 no-underline transition-colors hover:text-text"
           >
             X
           </a>
