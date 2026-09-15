@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 
-const videoTitle = 'How Agent Orchestrator Works: App & Agent Spawning Explained'
+const spawningTitle = 'How Agent Orchestrator Spawns an AI Coding Agent'
+const overviewTitle = 'How Agent Orchestrator Works: App & Agent Spawning Explained'
+
+const videoLinkClass =
+  'text-accent underline decoration-accent/35 underline-offset-[0.2em] transition-colors hover:text-text hover:decoration-text/45'
 
 export const metadata: Metadata = {
   title: 'Explanations',
@@ -14,21 +18,43 @@ export default function ExplanationsPage() {
         <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
           Explanations
         </h1>
-        <article className="mt-10" aria-labelledby="video-title">
-          <h2 id="video-title" className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
+        <article className="mt-10" aria-labelledby="video-spawning">
+          <h2 id="video-spawning" className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
+            <a
+              href="https://www.youtube.com/watch?v=09TkoeR6qJQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={videoLinkClass}
+            >
+              {spawningTitle}
+            </a>
+          </h2>
+          <div className="mt-6 aspect-video w-full overflow-hidden border border-border bg-surface">
+            <iframe
+              src="https://www.youtube.com/embed/09TkoeR6qJQ?si=GCGD89dFYXBl4g0_"
+              title={spawningTitle}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </article>
+        <article className="mt-16 md:mt-20" aria-labelledby="video-overview">
+          <h2 id="video-overview" className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
             <a
               href="https://www.youtube.com/watch?v=kyIOfoNaPQ0"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent underline decoration-accent/35 underline-offset-[0.2em] transition-colors hover:text-text hover:decoration-text/45"
+              className={videoLinkClass}
             >
-              {videoTitle}
+              {overviewTitle}
             </a>
           </h2>
           <div className="mt-6 aspect-video w-full overflow-hidden border border-border bg-surface">
             <iframe
               src="https://www.youtube.com/embed/kyIOfoNaPQ0?si=YZ9_lKA1_o0K26Ge"
-              title={videoTitle}
+              title={overviewTitle}
               className="h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
