@@ -41,7 +41,7 @@
   }
 
   .label {
-    @apply font-mono text-xs uppercase tracking-[0.1em] text-muted;
+    @apply font-sans text-xs font-medium uppercase tracking-[0.08em] text-muted;
   }
 
   .hairline {

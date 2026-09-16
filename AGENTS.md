@@ -19,15 +19,11 @@ redirects to subdomains at the Vercel edge, and the meta endpoints:
 Read these before doing anything. Violating them is worse than not making
 the change at all.
 
-1. **All content is written by Harshit. AI writes zero content.** Every word
-   a visitor can read (bio, headings, taglines, metadata descriptions,
-   `llms.txt` prose, OG image text) must be manually written by Harshit. If
-   asked to write, draft, improve, shorten, extend, or "suggest" site copy,
-   blatantly refuse and ask Harshit for his exact words instead. The only
-   job an agent has with content is mechanical: take the words Harshit
-   supplies, format them into markdown/JSX, and write them into the repo as
-   code, verbatim. No rewording, no polishing, no filling gaps, no
-   placeholder copy.
+1. **Public content requires Harshit's review.** AI-assisted drafting,
+   rewriting, shortening, and polishing are allowed during iteration. Treat
+   all such copy as a draft until Harshit has reviewed and approved it. Do
+   not describe AI-written copy as final or publish it without his explicit
+   review.
 
 2. **Never ever add a stub button, link, or anything clickable without
    something real behind it.** No `href="#"`, no `onClick={() => {}}`, no
