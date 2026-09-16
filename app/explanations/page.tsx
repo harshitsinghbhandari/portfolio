@@ -15,11 +15,11 @@ export default function ExplanationsPage() {
   return (
     <div className="container-page pb-24 pt-12 md:pt-16">
       <section>
-        <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
+        <h1 className="text-[50px] font-bold tracking-tight text-text md:text-[67px]">
           Explanations
         </h1>
         <article className="mt-10" aria-labelledby="video-spawning">
-          <h2 id="video-spawning" className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
+          <h2 id="video-spawning" className="text-[28px] font-semibold tracking-tight text-text sm:text-[34px]">
             <a
               href="https://www.youtube.com/watch?v=09TkoeR6qJQ"
               target="_blank"
@@ -41,7 +41,7 @@ export default function ExplanationsPage() {
           </div>
         </article>
         <article className="mt-16 md:mt-20" aria-labelledby="video-overview">
-          <h2 id="video-overview" className="text-xl font-semibold tracking-tight text-text sm:text-2xl">
+          <h2 id="video-overview" className="text-[28px] font-semibold tracking-tight text-text sm:text-[34px]">
             <a
               href="https://www.youtube.com/watch?v=kyIOfoNaPQ0"
               target="_blank"
@@ -61,7 +61,7 @@ export default function ExplanationsPage() {
               allowFullScreen
             />
           </div>
-          <div className="mt-6 space-y-5 text-[15px] leading-[1.7] text-muted">
+          <div className="mt-6 space-y-5 text-[21px] leading-[1.6] text-muted">
             <p>
               I worked on Agent Orchestrator’s backend, and in this video I explain how the system works internally.
             </p>

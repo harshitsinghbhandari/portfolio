@@ -36,9 +36,17 @@ const areas = [
 ]
 
 const engagements = [
-  { name: 'Architecture / Technical Review', price: 'From $1,500' },
-  { name: 'Implementation Engagement', price: 'From $5,000' },
-  { name: 'Ongoing Advisory', price: 'Custom' },
+  {
+    name: 'Architecture / Technical Review',
+    price: '$3,000',
+    description:
+      'I review one agent workflow or system across architecture, failure modes, observability, recovery, human handoffs, and operating cost. You receive written findings, prioritized fixes, and a 60 minute walkthrough. Typical turnaround: 5 business days.',
+  },
+  {
+    name: 'Implementation Engagement',
+    price: 'Custom',
+    description: null,
+  },
 ]
 
 const clients = [
@@ -61,14 +69,14 @@ export default function WorkWithMePage() {
   return (
     <div className="container-page pb-24 pt-12 md:pt-16">
       <section>
-        <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-text md:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
           Work With Me
         </h1>
-        <p className="mt-7 max-w-2xl text-[17px] leading-[1.75] text-text/85">
+        <p className="mt-7 text-[25px] leading-[1.65] text-text/85">
           I build infrastructure for AI agents, with a focus on making long-running agent
           work persistent, observable, and recoverable.
         </p>
-        <div className="mt-7 flex flex-wrap items-center gap-x-3 text-sm">
+        <div className="mt-7 flex flex-wrap items-center gap-x-3 text-[20px]">
           <a
             href="https://cal.com/harshitsinghbhandari/30min"
             target="_blank"
@@ -95,7 +103,7 @@ export default function WorkWithMePage() {
           {areas.map((area) => (
             <article key={area.title} className="grid gap-3 py-6 sm:grid-cols-[13rem_1fr] sm:gap-8">
               <h3 className="font-semibold tracking-tight text-text">{area.title}</h3>
-              <p className="text-[15px] leading-[1.7] text-muted">{area.description}</p>
+              <p className="text-[22px] leading-[1.6] text-muted">{area.description}</p>
             </article>
           ))}
         </div>
@@ -109,12 +117,19 @@ export default function WorkWithMePage() {
           {engagements.map((engagement) => (
             <div
               key={engagement.name}
-              className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:justify-between"
+              className="grid gap-3 py-6 sm:grid-cols-[1fr_auto] sm:gap-8"
             >
-              <h3 className="text-lg font-semibold tracking-tight text-text">
-                {engagement.name}
-              </h3>
-              <p className="shrink-0 text-xs font-medium uppercase tracking-[0.06em] text-muted">
+              <div>
+                <h3 className="text-[25px] font-semibold tracking-tight text-text">
+                  {engagement.name}
+                </h3>
+                {engagement.description && (
+                  <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+                    {engagement.description}
+                  </p>
+                )}
+              </div>
+              <p className="shrink-0 text-[20px] font-medium uppercase tracking-[0.06em] text-muted sm:pt-0.5">
                 {engagement.price}
               </p>
             </div>
@@ -128,7 +143,7 @@ export default function WorkWithMePage() {
         </h2>
         <div className="mt-7 divide-y divide-border">
           <article className="pb-8">
-            <h3 className="text-lg font-semibold tracking-tight text-text">
+            <h3 className="text-[25px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/Untrivial-ai/agent-orchestrator"
                 target="_blank"
@@ -138,24 +153,26 @@ export default function WorkWithMePage() {
                 Agent Orchestrator
               </a>
             </h3>
-            <p className="mt-3 text-[15px] leading-[1.7] text-muted">
-              Agent Orchestrator is a desktop workspace for planning, running, and
-              supervising multiple coding agents in parallel.
+            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+              I have worked across Agent Orchestrator&apos;s backend and runtime systems,
+              including session lifecycle, recovery, persistence, packaging, and
+              reliability. I now focus on product and UX for supervising long-running
+              agents without losing context, control, or trust.
             </p>
           </article>
           <article className="py-8">
-            <h3 className="text-lg font-semibold tracking-tight text-text">
+            <h3 className="text-[25px] font-semibold tracking-tight text-text">
               <a href="/explanations" className={linkClass}>
                 Technical explanations / videos
               </a>
             </h3>
-            <p className="mt-3 text-[15px] leading-[1.7] text-muted">
+            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
               I occasionally publish technical explanations of systems I build, design
               decisions, and ideas around AI agents and infrastructure.
             </p>
           </article>
           <article className="pt-8">
-            <h3 className="text-lg font-semibold tracking-tight text-text">
+            <h3 className="text-[25px] font-semibold tracking-tight text-text">
               <a
                 href="https://agentlab.in"
                 target="_blank"
@@ -165,7 +182,7 @@ export default function WorkWithMePage() {
                 AgentLab
               </a>
             </h3>
-            <p className="mt-3 text-[15px] leading-[1.7] text-muted">
+            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
               AgentLab is the umbrella for the projects I build for the AI agents I use.
             </p>
           </article>
@@ -176,7 +193,7 @@ export default function WorkWithMePage() {
         <h2 id="clients-heading" className="label">
           Who This Is For
         </h2>
-        <ul className="mt-7 space-y-3 text-[15px] leading-[1.7] text-text/85">
+        <ul className="mt-7 space-y-3 text-[22px] leading-[1.6] text-text/85">
           {clients.map((client) => (
             <li key={client} className="flex gap-4">
               <span aria-hidden="true" className="text-accent">
@@ -194,8 +211,8 @@ export default function WorkWithMePage() {
         </h2>
         <ol className="mt-7 divide-y divide-border border-y border-border">
           {process.map((step, index) => (
-            <li key={step} className="grid grid-cols-[2rem_1fr] gap-3 py-4 text-[15px] leading-[1.7] text-text/85">
-              <span className="text-xs font-medium text-subtle">{String(index + 1).padStart(2, '0')}</span>
+            <li key={step} className="grid grid-cols-[2rem_1fr] gap-3 py-4 text-[22px] leading-[1.6] text-text/85">
+              <span className="text-[17px] font-medium text-subtle">{String(index + 1).padStart(2, '0')}</span>
               {step}
             </li>
           ))}
@@ -203,10 +220,10 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 border-t border-border pt-10 md:mt-20" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" className="text-2xl font-semibold tracking-tight text-text">
+        <h2 id="contact-heading" className="text-[34px] font-semibold tracking-tight text-text">
           Work With Me
         </h2>
-        <div className="mt-5 flex flex-wrap items-center gap-x-3 text-sm">
+        <div className="mt-5 flex flex-wrap items-center gap-x-3 text-[20px]">
           <a
             href="https://cal.com/harshitsinghbhandari/30min"
             target="_blank"

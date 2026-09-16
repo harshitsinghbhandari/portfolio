@@ -24,9 +24,6 @@ const config: Config = {
       fontSize: {
         '2xs': ['11px', { lineHeight: '1.5', letterSpacing: '0.1em' }],
       },
-      maxWidth: {
-        page: '768px',
-      },
     },
   },
   plugins: [],
