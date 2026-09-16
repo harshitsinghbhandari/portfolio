@@ -6,12 +6,12 @@ export default function Navbar() {
       <nav className="flex items-center justify-between gap-4 py-4" aria-label="Primary">
         <Link
           href="/"
-          className="inline-flex min-h-11 shrink-0 items-center text-[22px] font-semibold tracking-tight text-text no-underline"
+          className="inline-flex min-h-11 shrink-0 items-center text-[18px] font-semibold tracking-tight text-text no-underline"
           aria-label="Home"
         >
           Harshit Singh
         </Link>
-        <div className="flex items-center gap-2 text-[20px] text-muted sm:gap-4">
+        <div className="flex items-center gap-2 text-[16px] text-muted sm:gap-4">
           <Link
             href="/work-with-me"
             className="inline-flex min-h-11 items-center justify-center px-2 text-accent no-underline transition-colors hover:text-text"

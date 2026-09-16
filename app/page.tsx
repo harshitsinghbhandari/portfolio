@@ -32,10 +32,10 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeLd) }}
       />
       <section>
-        <h1 className="text-[50px] font-bold tracking-tight text-text md:text-[67px]">
+        <h1 className="text-[40px] font-bold tracking-tight text-text md:text-[54px]">
           Harshit Singh
         </h1>
-        <div className="mt-8 space-y-5 text-[22px] leading-[1.65] text-text/85">
+        <div className="mt-8 space-y-5 text-[18px] leading-[1.65] text-text/85">
           <p>
             I build infrastructure for AI agents, with a focus on making long-running agent
             work persistent, observable, and recoverable.
@@ -86,11 +86,11 @@ export default function HomePage() {
         <h2 id="explanations-heading" className="label">
           Explanations
         </h2>
-        <p className="mt-5 text-[21px] leading-[1.6] text-muted">
+        <p className="mt-5 text-[17px] leading-[1.6] text-muted">
           I occasionally publish technical explanations of systems I build, design
           decisions, and ideas around AI agents and infrastructure.
         </p>
-        <a href="/explanations" className={`${externalLinkClass} mt-4 inline-block text-[20px]`}>
+        <a href="/explanations" className={`${externalLinkClass} mt-4 inline-block text-[16px]`}>
           View explanations →
         </a>
       </section>
@@ -101,7 +101,7 @@ export default function HomePage() {
         </h2>
         <div className="mt-7 divide-y divide-border">
           <article className="pb-9">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/Untrivial-ai/agent-orchestrator"
                 target="_blank"
@@ -111,7 +111,7 @@ export default function HomePage() {
                 Agent Orchestrator
               </a>
             </h3>
-            <div className="mt-3 space-y-3 text-[21px] leading-[1.6] text-muted">
+            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
               <p>
                 Agent Orchestrator is a desktop workspace for planning, running, and
                 supervising multiple coding agents in parallel.
@@ -124,7 +124,7 @@ export default function HomePage() {
           </article>
 
           <article className="py-9">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/harshitsinghbhandari/iitb"
                 target="_blank"
@@ -134,7 +134,7 @@ export default function HomePage() {
                 IITB-CLI
               </a>
             </h3>
-            <div className="mt-3 space-y-3 text-[21px] leading-[1.6] text-muted">
+            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
               <p>
                 IITB-CLI is a simple command-line interface built on top of IIT Bombay’s
                 legacy academic portal.
@@ -154,7 +154,7 @@ export default function HomePage() {
         </h2>
         <div className="mt-7 divide-y divide-border">
           <article className="pb-9">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://sennight.agentlab.in"
                 target="_blank"
@@ -164,7 +164,7 @@ export default function HomePage() {
                 Sennight
               </a>
             </h3>
-            <div className="mt-3 space-y-3 text-[21px] leading-[1.6] text-muted">
+            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
               <p>
                 Sennight is a flexible calendar agent that plans my week around time quotas
                 instead of fixed schedules.
@@ -178,7 +178,7 @@ export default function HomePage() {
           </article>
 
           <article className="py-9">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/agentlab-in/pages"
                 target="_blank"
@@ -188,7 +188,7 @@ export default function HomePage() {
                 Pages
               </a>
             </h3>
-            <div className="mt-3 space-y-3 text-[21px] leading-[1.6] text-muted">
+            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
               <p>
                 Pages is a one-command way to publish work created by AI agents as a
                 shareable website.
@@ -205,7 +205,7 @@ export default function HomePage() {
           </article>
 
           <article className="pt-9">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/agentlab-in/hosted-ao"
                 target="_blank"
@@ -215,7 +215,7 @@ export default function HomePage() {
                 Hosted AO
               </a>
             </h3>
-            <div className="mt-3 space-y-3 text-[21px] leading-[1.6] text-muted">
+            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
               <p>Hosted AO extends Agent Orchestrator beyond a single machine.</p>
               <p>
                 I built it to connect and manage multiple cloud or local-network machines

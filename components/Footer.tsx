@@ -11,7 +11,7 @@ export default function Footer() {
     <div className="container-page">
       <div className="hairline" />
       <footer className="flex flex-col gap-3 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <div className="-ml-2 flex flex-wrap gap-x-2 gap-y-2 text-[20px] text-muted">
+        <div className="-ml-2 flex flex-wrap gap-x-2 gap-y-2 text-[16px] text-muted">
           {links.map((l) => (
             <a
               key={l.label}
@@ -24,7 +24,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="text-[20px] text-muted">© {year} Harshit Singh Bhandari</p>
+        <p className="text-[16px] text-muted">© {year} Harshit Singh Bhandari</p>
       </footer>
     </div>
   )

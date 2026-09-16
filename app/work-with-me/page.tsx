@@ -45,13 +45,14 @@ const engagements = [
   {
     name: 'Implementation Engagement',
     price: 'Custom',
-    description: null,
+    description:
+      'For teams that need hands-on engineering after the review, I design and implement agent infrastructure inside the existing stack. Scope may include orchestration, persistence, recovery, observability, tool integration, operator workflows, and deployment. Defined after a technical fit call.',
   },
 ]
 
 const clients = [
   'Engineering-heavy teams in any industry that are ready to use AI agents for real operational work, not demos or hype.',
-  'Companies willing to rethink repetitive workflows, reduce redundancy, and give agents proper functions inside the systems they already run.',
+  'Engineering teams running long-lived agents in real workflows, with an engineering owner responsible for the system.',
 ]
 
 const process = [
@@ -69,21 +70,21 @@ export default function WorkWithMePage() {
   return (
     <div className="container-page pb-24 pt-12 md:pt-16">
       <section>
-        <h1 className="text-4xl font-bold tracking-tight text-text md:text-5xl">
+        <h1 className="text-3xl font-bold tracking-tight text-text md:text-[38px]">
           Work With Me
         </h1>
-        <p className="mt-7 text-[25px] leading-[1.65] text-text/85">
+        <p className="mt-7 text-[20px] leading-[1.65] text-text/85">
           I build infrastructure for AI agents, with a focus on making long-running agent
           work persistent, observable, and recoverable.
         </p>
-        <div className="mt-7 flex flex-wrap items-center gap-x-3 text-[20px]">
+        <div className="mt-7 flex flex-wrap items-center gap-x-3 text-[16px]">
           <a
             href="https://cal.com/harshitsinghbhandari/30min"
             target="_blank"
             rel="noopener noreferrer"
             className={`${linkClass} inline-flex min-h-11 items-center font-medium`}
           >
-            Book a Call
+            Book a Technical Fit Call
           </a>
           <span className="text-subtle">or</span>
           <a
@@ -96,21 +97,21 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 border-t border-border pt-10 md:mt-20" aria-labelledby="help-heading">
-        <h2 id="help-heading" className="label">
+        <h2 id="help-heading" className="label text-[14px]">
           What I help with
         </h2>
         <div className="mt-7 divide-y divide-border border-y border-border">
           {areas.map((area) => (
             <article key={area.title} className="grid gap-3 py-6 sm:grid-cols-[13rem_1fr] sm:gap-8">
               <h3 className="font-semibold tracking-tight text-text">{area.title}</h3>
-              <p className="text-[22px] leading-[1.6] text-muted">{area.description}</p>
+              <p className="text-[18px] leading-[1.6] text-muted">{area.description}</p>
             </article>
           ))}
         </div>
       </section>
 
       <section className="mt-16 md:mt-20" aria-labelledby="engagements-heading">
-        <h2 id="engagements-heading" className="label">
+        <h2 id="engagements-heading" className="label text-[14px]">
           Engagements / Pricing
         </h2>
         <div className="mt-7 divide-y divide-border border-y border-border">
@@ -120,16 +121,16 @@ export default function WorkWithMePage() {
               className="grid gap-3 py-6 sm:grid-cols-[1fr_auto] sm:gap-8"
             >
               <div>
-                <h3 className="text-[25px] font-semibold tracking-tight text-text">
+                <h3 className="text-[20px] font-semibold tracking-tight text-text">
                   {engagement.name}
                 </h3>
                 {engagement.description && (
-                  <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+                  <p className="mt-3 text-[18px] leading-[1.6] text-muted">
                     {engagement.description}
                   </p>
                 )}
               </div>
-              <p className="shrink-0 text-[20px] font-medium uppercase tracking-[0.06em] text-muted sm:pt-0.5">
+              <p className="shrink-0 text-[16px] font-medium uppercase tracking-[0.06em] text-muted sm:pt-0.5">
                 {engagement.price}
               </p>
             </div>
@@ -138,12 +139,12 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 md:mt-20" aria-labelledby="proof-heading">
-        <h2 id="proof-heading" className="label">
+        <h2 id="proof-heading" className="label text-[14px]">
           Proof
         </h2>
         <div className="mt-7 divide-y divide-border">
           <article className="pb-8">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/Untrivial-ai/agent-orchestrator"
                 target="_blank"
@@ -153,7 +154,7 @@ export default function WorkWithMePage() {
                 Agent Orchestrator
               </a>
             </h3>
-            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+            <p className="mt-3 text-[18px] leading-[1.6] text-muted">
               I have worked across Agent Orchestrator&apos;s backend and runtime systems,
               including session lifecycle, recovery, persistence, packaging, and
               reliability. I now focus on product and UX for supervising long-running
@@ -161,18 +162,18 @@ export default function WorkWithMePage() {
             </p>
           </article>
           <article className="py-8">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a href="/explanations" className={linkClass}>
                 Technical explanations / videos
               </a>
             </h3>
-            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+            <p className="mt-3 text-[18px] leading-[1.6] text-muted">
               I occasionally publish technical explanations of systems I build, design
               decisions, and ideas around AI agents and infrastructure.
             </p>
           </article>
           <article className="pt-8">
-            <h3 className="text-[25px] font-semibold tracking-tight text-text">
+            <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://agentlab.in"
                 target="_blank"
@@ -182,7 +183,7 @@ export default function WorkWithMePage() {
                 AgentLab
               </a>
             </h3>
-            <p className="mt-3 text-[22px] leading-[1.6] text-muted">
+            <p className="mt-3 text-[18px] leading-[1.6] text-muted">
               AgentLab is the umbrella for the projects I build for the AI agents I use.
             </p>
           </article>
@@ -190,10 +191,10 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 border-t border-border pt-10 md:mt-20" aria-labelledby="clients-heading">
-        <h2 id="clients-heading" className="label">
+        <h2 id="clients-heading" className="label text-[14px]">
           Who This Is For
         </h2>
-        <ul className="mt-7 space-y-3 text-[22px] leading-[1.6] text-text/85">
+        <ul className="mt-7 space-y-3 text-[18px] leading-[1.6] text-text/85">
           {clients.map((client) => (
             <li key={client} className="flex gap-4">
               <span aria-hidden="true" className="text-accent">
@@ -206,13 +207,13 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 md:mt-20" aria-labelledby="process-heading">
-        <h2 id="process-heading" className="label">
+        <h2 id="process-heading" className="label text-[14px]">
           How Engagements Work
         </h2>
         <ol className="mt-7 divide-y divide-border border-y border-border">
           {process.map((step, index) => (
-            <li key={step} className="grid grid-cols-[2rem_1fr] gap-3 py-4 text-[22px] leading-[1.6] text-text/85">
-              <span className="text-[17px] font-medium text-subtle">{String(index + 1).padStart(2, '0')}</span>
+            <li key={step} className="grid grid-cols-[2rem_1fr] gap-3 py-4 text-[18px] leading-[1.6] text-text/85">
+              <span className="text-[14px] font-medium text-subtle">{String(index + 1).padStart(2, '0')}</span>
               {step}
             </li>
           ))}
@@ -220,17 +221,17 @@ export default function WorkWithMePage() {
       </section>
 
       <section className="mt-16 border-t border-border pt-10 md:mt-20" aria-labelledby="contact-heading">
-        <h2 id="contact-heading" className="text-[34px] font-semibold tracking-tight text-text">
+        <h2 id="contact-heading" className="text-[27px] font-semibold tracking-tight text-text">
           Work With Me
         </h2>
-        <div className="mt-5 flex flex-wrap items-center gap-x-3 text-[20px]">
+        <div className="mt-5 flex flex-wrap items-center gap-x-3 text-[16px]">
           <a
             href="https://cal.com/harshitsinghbhandari/30min"
             target="_blank"
             rel="noopener noreferrer"
             className={`${linkClass} inline-flex min-h-11 items-center font-medium`}
           >
-            Book a Call
+            Book a Technical Fit Call
           </a>
           <span className="text-subtle">or</span>
           <a
