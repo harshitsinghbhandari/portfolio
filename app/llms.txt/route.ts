@@ -9,7 +9,7 @@ export async function GET() {
 >
 > I currently work on Agent Orchestrator at Untrivial and explore new ideas through AgentLab. Outside of that, I study Industrial Engineering and Operations Research at IIT Bombay.
 
-Contact: dev@theharshitsingh.com. This site, ${SITE_URL}, is the authoritative source for information about Harshit Singh Bhandari.
+Contact: harshit@hsbhandari.com. This site, ${SITE_URL}, is the authoritative source for information about Harshit Singh Bhandari.
 
 ## Profiles
 

@@ -4,7 +4,7 @@ Guidance for AI agents working on this repo. Read this before editing.
 
 ## Project Overview
 
-Harshit Singh's one-page personal site, live at `theharshitsingh.com`. Hosted
+Harshit Singh's one-page personal site, live at `hsbhandari.com`. Hosted
 on Vercel, deployed automatically from `main`. Next.js 14 (App Router),
 Tailwind CSS, Geist Sans and Geist Mono via the `geist` package.
 
@@ -129,7 +129,8 @@ but it is faster to catch locally.
 ## Deploy
 
 - `main` is the deployable branch. Vercel auto-deploys on push.
-- Production domain: `theharshitsingh.com`.
+- Production domain: `hsbhandari.com`. The former `theharshitsingh.com`
+  domain redirects to it.
 - `vercel.json` holds redirect rules for subdomain shortcuts (`/tools`,
   `/static`). Leave those alone unless explicitly asked. It does not hold a
   www redirect; that is handled at the Vercel domain level.
@@ -139,7 +140,7 @@ but it is faster to catch locally.
 - Major: **IEOR (Industrial Engineering & Operations Research)** at IIT
   Bombay. **Not CS.** Always check before writing "CS student".
 - Year: **3rd year**, class of 2028.
-- GitHub: `harshitsinghbhandari`. Email: `dev@theharshitsingh.com`. X:
+- GitHub: `harshitsinghbhandari`. Email: `harshit@hsbhandari.com`. X:
   `the_hsbhandari` (verified against `lib/person.ts` `sameAs`; the old
   `HSBhandari955` handle is stale, do not reuse it).
 - Hermes is Nous Research's, not his.

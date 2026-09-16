@@ -2,7 +2,7 @@ const links = [
   { label: 'GitHub', href: 'https://github.com/harshitsinghbhandari' },
   { label: 'X', href: 'https://x.com/the_hsbhandari' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/harshitsinghbhandari/' },
-  { label: 'Email', href: 'mailto:dev@theharshitsingh.com' },
+  { label: 'Email', href: 'mailto:harshit@hsbhandari.com' },
 ]
 
 export default function Footer() {

@@ -1,4 +1,4 @@
-# theharshitsingh.com
+# hsbhandari.com
 
 One-page personal site for Harshit Singh. Next.js 14 App Router, Tailwind CSS,
 Geist Sans and Geist Mono.
@@ -40,3 +40,5 @@ Always run `npm run build` before pushing.
 
 Targets **Vercel**. Push to `main` and Vercel auto-deploys. `vercel.json`
 holds the `/tools` and `/static` subdomain redirects; leave it alone.
+The former `theharshitsingh.com` domain permanently redirects to the matching
+path on `hsbhandari.com`.

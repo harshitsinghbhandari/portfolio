@@ -3,11 +3,11 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { SITE_DESCRIPTION } from '@/lib/person'
+import { SITE_DESCRIPTION, SITE_URL } from '@/lib/person'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://theharshitsingh.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Harshit Singh',
     template: '%s · Harshit Singh',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   // },
   openGraph: {
     type: 'website',
-    url: 'https://theharshitsingh.com',
+    url: SITE_URL,
     siteName: 'Harshit Singh',
     title: 'Harshit Singh',
     description: SITE_DESCRIPTION,
