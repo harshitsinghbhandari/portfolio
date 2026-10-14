@@ -43,7 +43,7 @@ export default function HomePage() {
           <p>
             I currently work on{' '}
             <a
-              href="https://github.com/Untrivial-ai/agent-orchestrator"
+              href="https://github.com/OrchestratorInc/agent-orchestrator"
               target="_blank"
               rel="noopener noreferrer"
               className={externalLinkClass}
@@ -52,12 +52,12 @@ export default function HomePage() {
             </a>{' '}
             at{' '}
             <a
-              href="https://github.com/Untrivial-ai"
+              href="https://orchestrator.inc"
               target="_blank"
               rel="noopener noreferrer"
               className={externalLinkClass}
             >
-              Untrivial
+              Orchestrator Inc
             </a>{' '}
             and explore new ideas through{' '}
             <a
@@ -103,7 +103,7 @@ export default function HomePage() {
           <article className="pb-9">
             <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
-                href="https://github.com/Untrivial-ai/agent-orchestrator"
+                href="https://github.com/OrchestratorInc/agent-orchestrator"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={externalLinkClass}

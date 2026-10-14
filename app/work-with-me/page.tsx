@@ -146,7 +146,7 @@ export default function WorkWithMePage() {
           <article className="pb-8">
             <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
-                href="https://github.com/Untrivial-ai/agent-orchestrator"
+                href="https://github.com/OrchestratorInc/agent-orchestrator"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClass}
