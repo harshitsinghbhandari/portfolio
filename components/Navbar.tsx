@@ -12,12 +12,6 @@ export default function Navbar() {
           Harshit Singh
         </Link>
         <div className="flex items-center gap-2 text-[16px] text-muted sm:gap-4">
-          <Link
-            href="/work-with-me"
-            className="inline-flex min-h-11 items-center justify-center px-2 text-accent no-underline transition-colors hover:text-text"
-          >
-            Work with me
-          </Link>
           <a
             href="https://github.com/harshitsinghbhandari"
             target="_blank"
