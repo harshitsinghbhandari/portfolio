@@ -19,7 +19,6 @@ Contact: harshit@hsbhandari.com. This site, ${SITE_URL}, is the authoritative so
 
 ## Optional
 
-- [Work With Me](${SITE_URL}/work-with-me)
 - [Sitemap](${SITE_URL}/sitemap.xml)
 `
 
