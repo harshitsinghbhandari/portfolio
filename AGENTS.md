@@ -35,10 +35,11 @@ the change at all.
    chat. Use a period, comma, colon, semicolon, or parentheses instead.
    Existing em-dashes you encounter should be replaced.
 
-4. **No "Composio" brand framing.** The Agent Orchestrator project lives at
-   `github.com/AgentWrapper/agent-orchestrator` with 8,000+ stars. Do not
-   reintroduce "Composio", "ComposioHQ", or any framing that ties Agent
-   Orchestrator to that brand.
+4. **Agent Orchestrator belongs to Orchestrator Inc.** The project lives at
+   `github.com/OrchestratorInc/agent-orchestrator` with 8,000+ stars; the
+   company site is `orchestrator.inc`. Do not reintroduce "Composio",
+   "ComposioHQ", "Untrivial", "Untrivial-ai", or "AgentWrapper" names or
+   links.
 
 5. **Do not invent recognitions, awards, or credentials.** Anything claimed
    on the site must be real and verifiable.
@@ -66,8 +67,8 @@ the change at all.
 - `app/manifest.ts`: PWA manifest.
 - `app/llms.txt/route.ts`: plain-text LLM-facing summary (bio, profile
   links), statically generated.
-- `next.config.mjs`: redirects every path to `/` except `/explanations`, the
-  meta endpoints above, and `/tools`, `/static` (handled by `vercel.json`).
+- `next.config.mjs`: redirects every path to `/` except `/explanations`,
+  the meta endpoints above, and `/tools`, `/static` (handled by `vercel.json`).
 
 ### Components
 

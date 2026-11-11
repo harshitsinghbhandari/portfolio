@@ -177,7 +177,7 @@ export default function HomePage() {
             </div>
           </article>
 
-          <article className="py-9">
+          <article className="pt-9">
             <h3 className="text-[20px] font-semibold tracking-tight text-text">
               <a
                 href="https://github.com/agentlab-in/pages"
@@ -200,27 +200,6 @@ export default function HomePage() {
                   {'alab pages put {folder}'}
                 </code>
                 , the folder is published and ready to share.
-              </p>
-            </div>
-          </article>
-
-          <article className="pt-9">
-            <h3 className="text-[20px] font-semibold tracking-tight text-text">
-              <a
-                href="https://github.com/agentlab-in/hosted-ao"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={externalLinkClass}
-              >
-                Hosted AO
-              </a>
-            </h3>
-            <div className="mt-3 space-y-3 text-[17px] leading-[1.6] text-muted">
-              <p>Hosted AO extends Agent Orchestrator beyond a single machine.</p>
-              <p>
-                I built it to connect and manage multiple cloud or local-network machines
-                from one place. A machine can be added using its IP address and then used to
-                run Agent Orchestrator remotely.
               </p>
             </div>
           </article>
